@@ -1,0 +1,436 @@
+
+a:link { color: #0F467F; text-decoration: none; font-size: large; }
+a:visited {	color: #0F467F;	text-decoration: none; font-size: large; }
+a:hover { color: #6699cc; text-decoration: none; font-size: large; }
+a:active { color: #6699cc; text-decoration: none; font-size: large;  }
+
+.posttitle {
+	color: #0F467F; text-decoration: none; font-size: big;
+}
+
+.FormLt1 { 
+	font-family : Arial;
+	font-size : 8pt;
+	cursor: pointer;
+}
+
+textarea {
+	font-size:8pt; 
+	height:75px; 
+	width:175px;
+}
+
+.logohead {
+	font-family : Arial;
+	font-size : 25pt;
+	font-weight : bold;
+}
+
+.logosub {
+	font-family : Arial;
+	font-size : 8pt;
+	font-weight : bold;
+}
+/* CONTENT */
+.content {
+	font-family: Tahoma,Geneva,Kalimati,sans-serif;
+	font-size: small;
+}
+.contentBlog {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	padding-top: 1px;
+}
+
+.contentFooter {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	color: #888888;
+	padding-top: 1px;
+}
+.contentsubpage {
+	padding-top: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+	vertical-align: top;
+	width: 547px;
+	font-family: Tahoma,Geneva,Kalimati,sans-serif;
+	font-size: small;
+}
+.content p {
+	vertical-align: top;
+	margin-top: 5px;
+	font-family: "Book Antiqua", serif;
+	font-size: small;
+	font-weight: 400;
+	color: #000000;
+}
+
+.largeParagraph {
+	vertical-align: top;
+	margin-top: 5px;
+	font-family: "Book Antiqua", serif;
+	font-size: small;
+	font-weight: bold;
+	color: #000000;
+	padding: 10px;
+}
+
+.border {  
+	font-family: Arial; 
+	font-size: small; 
+	border: 1px #000000 inset;
+}
+
+.text {  
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: small;
+}
+
+.SMtext {  
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: small;
+}
+
+.uptext {  
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 7pt; 
+	color: #000000;
+}
+.article_table {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+}
+.article_title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font : bold;
+}
+.article_content {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+}
+
+/*
+//=============================
+-- Created by SOHOtemplates.com-
+   Template-Specific Classes
+//=============================
+*/
+
+body{
+	text-align: center;
+	margin-top: 0px;
+	background-color: #EEEEEE;
+}
+/*
+//=============================
+  Table_01: layout settings
+//=============================
+*/
+#Table_01 {
+	border: 0px;
+}
+
+/*################################################################################################
+--------------------------------------------------------------------------------------------------
+>> Menu System
+--------------------------------------------------------------------------------------------------
+################################################################################################*/
+
+/*================================================================================
+>> General
+================================================================================*/
+#menu {
+	background-color: #FFFFFF;
+	text-align: left;
+	height: 26px;
+	width: 861px;
+	color: #114683;
+	padding-top: 2px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#menu a {
+	text-align: left;
+	color: #000000;
+	font-size: large;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+}
+#menu a:hover {
+	text-align: left;
+	color: #E3007A;
+	font-size: large;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+#prod {
+	background-color: #FFFFFF;
+	text-align: left;
+	height: 26px;
+	width: 861px;
+	color: #114683;
+	padding-top: 2px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#prod td {
+	text-align: left;
+	color: #000000;
+	font-size: small;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#prod a {
+	text-align: left;
+	color: #000000;
+	font-size: small;
+	text-decoration: underline;
+	font-family: Arial, Helvetica, sans-serif;
+}
+#prod a:hover {
+	text-align: left;
+	color: #E3007A;
+	font-size: small;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+/* This is the main hsub table */
+table.hmains {
+	width: 100%;
+	color: #D5D5D5;
+}
+
+/* This cell contains a submenu link */
+td.hmains {
+	text-align: left;
+	color: #D5D5D5;
+	font-size: small;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+a.hmains:link { text-align: left;	color: #FFFFFF;}
+a.hmains:visited { text-align: left;	color: #FFFFFF;}
+a.hmains:hover { text-align: left; color: #1A497D;}
+a.hmains:active { text-align: left;	color: #FFFFFF;}
+
+
+/*################################################################################################
+--------------------------------------------------------------------------------------------------
+>> Menu System - #VSUBS#
+--------------------------------------------------------------------------------------------------
+################################################################################################*/
+
+/*================================================================================
+>> General
+================================================================================*/
+.vmenu_main_sub {  
+	border: 0px;
+   font-family: Arial, Helvetica, sans-serif; 
+   font-size: 8pt;
+   padding: 15px 10px 2px 10px;
+   background-color:#D5D5D5;
+   vertical-align:top;
+   width:155px;
+}
+
+/* This cell contains the submenu table */
+td.vmenu_main_sub {
+   border: 0px;
+   font-family: Arial, Helvetica, sans-serif; 
+   font-size: 9pt;
+   padding: 15px 10px 2px 15px;
+}
+
+a.vmenu_main_sub:link { color: #000000; text-decoration: none; }
+a.vmenu_main_sub:visited { color: #000000; text-decoration: none; }
+a.vmenu_main_sub:hover { color: #6699cc; text-decoration: none; }
+a.vmenu_main_sub:active { color: #6699cc; text-decoration: none; }
+
+
+/*
+//=============================
+// companyname: This defines where you logoimage will be placed
+//=============================
+*/
+.companyname {
+	background-color:#0000055
+}
+.companyname2{
+	background-color: #FFFFFF;
+	background-image :  url("images/top.jpg");
+	background-repeat : no-repeat;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: bold;
+	color: #FFFFFF;
+	}
+
+/*
+//=============================
+// headers: This defines the headers in your site
+//=============================
+*/
+h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: bold;
+	color: #124989;
+}
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #124989;
+	font-weight: bold;
+	margin-bottom: 0px;
+}
+
+/*
+//=============================
+// promobox: promobox content
+//=============================
+*/
+#promo {
+	background-color: #F1F1F1;
+	height: 119px;
+	width: 587px;
+	vertical-align: top;
+}
+#promotext {
+	width: 100%;
+	vertical-align: top;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-left: 20px;
+	padding-bottom: 10px;
+}
+#promotext p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	color: #333333;
+	margin-top: 0px;
+}
+#promotext H2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	color: #124989;
+	font-weight: bold;
+	margin-bottom: 0px;
+}
+
+/*//=============================
+begin newsbox
+//=============================*/
+#newsbox {
+	width: 202px;
+	padding-top: 30px;
+	padding-right: 2px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	text-align: left;
+	vertical-align: top;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #D5D5D5;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+}
+#newsbox h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: bold;
+	color: #B5B5B5;
+}
+#newsbox h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-weight: bold;
+	color: #003366;
+	text-decoration: none;
+}
+#newsbox p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-weight: normal;
+	color: #333333;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+#newsbox a:link {
+	color: #035681;
+	text-decoration: none;
+}
+#newsbox a:visited {
+	color: #035681;
+	text-decoration: none;
+}
+/* end newsbox */
+
+#leftcol {
+	background-color: #D5D5D5;
+	vertical-align: top;
+	width: 175px;
+}
+#adressfield {
+	background-color: #1A497D;
+	height: 119px;
+	width: 150px;
+	padding-top: 15px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 15px;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	font-size: small;
+}
+
+li {
+	font-size: 10pt;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+	/*list-style-image:  url("images/subbullet.gif");*/
+}
+
+/*
+//=============================
+// copyright: copyright content
+//=============================
+*/
+
+.copyright {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	padding-left: 10px;
+	font-weight: normal;
+	color: #666666;
+	text-decoration: none;
+	background-color: #FFFFFF;
+  padding-right: 10px;
+}
+#bottom {
+	border-top-width: 2px;
+	border-top-style: solid;
+	border-top-color: #D5D5D5;
+}
+
+img.gal
+{
+opacity:0.7;
+filter:alpha(opacity=70);
+}
+img.gal:hover
+{
+opacity:1.0;
+filter:alpha(opacity=100);
+}
+
+.smallprice {
+	font-size: small;
+}

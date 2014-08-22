@@ -1,0 +1,63 @@
+<HTML><body>
+<form method="post" name="contact_form"
+action="addPriceHandler.php">
+ 
+    
+	     <BR/>Product id:
+    
+    <?php
+require 'db.php';
+
+$query = "select p.id id, p.name pname, b.name bname, p.qty_um qty, p.um um from product p, brand b where p.brand_id = b.id";
+
+$result = mysql_query($query) or die ("Could not execute query");
+
+
+	$rssfeed = '<select name="product">';
+
+	while($row = mysql_fetch_array($result)) {
+	extract($row);
+
+	$rssfeed .= '<option value="'.$id.'">'.$pname.' '.$bname.' '.$qty.$um;
+	$rssfeed .= '</option>';
+}
+$rssfeed .= '</select>';
+
+mysql_close($connection);
+echo $rssfeed;
+?>
+
+	     <BR/>Store id:
+    
+    <?php
+require 'db.php';
+
+$query = "select s.id sid, c.name cname, city, address from store s, commerciant c where s.commerciant_id = c.id"	  ;
+
+$result = mysql_query($query) or die ("Could not execute query");
+
+
+	$rssfeed = '<select name="store">';
+
+	while($row = mysql_fetch_array($result)) {
+	extract($row);
+
+	$rssfeed .= '<option value="'.$sid.'">'.$cname.' '.$city.' '.$address;
+	$rssfeed .= '</option>';
+}
+$rssfeed .= '</select>';
+
+mysql_close($connection);
+echo $rssfeed;
+?>
+       <BR/>Price:
+    <input type="text" name="price" size="20"/>
+    
+           <BR/>Date:
+    <input type="text" name="date" size="20"/>
+    
+    <BR/>
+    <input type="submit" value="Submit">
+</form>   
+<A href="index.php">Main menu</A>
+</body></HTML>
