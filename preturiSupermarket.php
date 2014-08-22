@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<TITLE>--</TITLE>
+<TITLE>Preturi supermarket</TITLE>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"/>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 </HEAD>

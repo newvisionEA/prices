@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
 <TITLE>--</TITLE>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"/>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 </HEAD>
 
@@ -36,109 +36,108 @@
 					cellspacing="0">
 					<tr>
 						<td class="content">
-							<TABLE id = "prod" border="0" cellpadding="2">
+							<TABLE id="prod" border="0" cellpadding="2">
 <?php
 require 'db.php';
 
-$cid = isset($_GET['cid']) ? $_GET['cid'] : null;
-$sid = isset($_GET['sid']) ? $_GET['sid'] : null;
+$cid = isset ( $_GET ['cid'] ) ? $_GET ['cid'] : null;
+$sid = isset ( $_GET ['sid'] ) ? $_GET ['sid'] : null;
 
 if ($sid != null) {
-	$query = "select c.name cname, c.id cid, s.city scity, s.address saddress from commerciant c, store s where c.id=s.commerciant_id and s.id = ".$sid;
-	$result = mysql_query($query) or die ("Could not execute query");
-	$row = mysql_fetch_array($result);
-	extract($row);
+	$query = "select c.name cname, c.id cid, s.city scity, s.address saddress from commerciant c, store s where c.id=s.commerciant_id and s.id = " . $sid;
+	$result = mysql_query ( $query ) or die ( "Could not execute query" );
+	$row = mysql_fetch_array ( $result );
+	extract ( $row );
 	
-	$query = "select c.name cname, c.id cid from commerciant c, store s where c.id=s.commerciant_id and s.id = ".$sid;
-	$result = mysql_query($query) or die ("Could not execute query");
-	$row = mysql_fetch_array($result);
-	extract($row);
+	$query = "select c.name cname, c.id cid from commerciant c, store s where c.id=s.commerciant_id and s.id = " . $sid;
+	$result = mysql_query ( $query ) or die ( "Could not execute query" );
+	$row = mysql_fetch_array ( $result );
+	extract ( $row );
 	
 	$comname = $cname;
 	$comid = $cid;
 	
-	$html .= '<TR><TD>Preturi '.$cname.' '.$scity.' '.$saddress.'</td></tr>';
+	$html .= '<TR><TD><B>Preturi ' . $cname . ' ' . $scity . ', ' . $saddress . '</B></td></tr>';
 	
 	$query = "select c.name maincatname, c.id maincatid from category c where parent_id=0";
-	$result = mysql_query($query) or die ("Could not execute query");
+	$result = mysql_query ( $query ) or die ( "Could not execute query" );
 	
-	while($row = mysql_fetch_array($result)) {
-		extract($row);
+	while ( $row = mysql_fetch_array ( $result ) ) {
+		extract ( $row );
 		
 		$firstCat = false;
-		$query2 = "select name catname, id catid from category where parent_id = ".$maincatid;
-		//echo $query2;
-		$result2 = mysql_query($query2) or die ("Could not execute query");
-		while($row2 = mysql_fetch_array($result2)) {
+		$query2 = "select name catname, id catid from category where parent_id = " . $maincatid;
+		// echo $query2;
+		$result2 = mysql_query ( $query2 ) or die ( "Could not execute query" );
+		// subcategorii
+		while ( $row2 = mysql_fetch_array ( $result2 ) ) {
 			
-			if (!$firstCat){
-				$html .= '<TR><TD>'.$maincatname.'</td></tr>';
+			if (! $firstCat) {
+				$html .= '<TR><TD>' . $maincatname . '</td></tr>';
 				$firstCat = true;
 			}
-
-			extract($row2);
-				
-// 			$query3 = "select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val,
-// 			(
-// 			SELECT MIN( value )
-// 			FROM price
-// 			WHERE product_id = p.id
-// 			) pmin
-// 		from product p, brand b, price pri where b.id=p.brand_id and pri.product_id=p.id and pri.store_id=".$sid.' and p.category_id = '.$catid;
 			
-			$query3="select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val,
+			extract ( $row2 );
+			
+			// $query3 = "select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val,
+			// (
+			// SELECT MIN( value )
+			// FROM price
+			// WHERE product_id = p.id
+			// ) pmin
+			// from product p, brand b, price pri where b.id=p.brand_id and pri.product_id=p.id and pri.store_id=".$sid.' and p.category_id = '.$catid;
+			
+			$query3 = "select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val,
 			(
 			SELECT MIN( value )
 			FROM price
 			WHERE product_id = p.id
 			) pmin
-			from product p, brand b, price pri, store s where s.commerciant_id=".$comid." and 
-			pri.store_id =s.id and b.id=p.brand_id and pri.product_id=p.id and p.category_id=".$catid.
-			" group by p.id";
-			//echo $query3.'<br/>';
-			$result3 = mysql_query($query3) or die ("Could not execute query ".$query3);
+			from product p, brand b, price pri, store s where s.commerciant_id=" . $comid . " and 
+			pri.store_id =s.id and b.id=p.brand_id and pri.product_id=p.id and p.category_id=" . $catid . " group by p.id";
+			// echo $query3.'<br/>';
+			$result3 = mysql_query ( $query3 ) or die ( "Could not execute query " . $query3 );
 			
 			$firstPrice = false;
-			//echo '!1';
-			while($row3 = mysql_fetch_array($result3)) {
-				//echo '!2';
-				if (!$firstPrice){
-					$html .= '<TR><TD>'.$catname.'</td></tr>';
+			// echo '!1';
+			while ( $row3 = mysql_fetch_array ( $result3 ) ) {
+				// echo '!2';
+				if (! $firstPrice) {
+					$html .= '<TR><TD>' . $catname . '</td></tr>';
 					$firstPrice = true;
 				}
 				
-				extract($row3);
-			
-				//echo $pname;
-				$html .= '<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="detaliiProdus.php?id='.$pid.'">';
-				$html .= $pname.' '.$bname.' '.$qty.' '.$um;
+				extract ( $row3 );
+				
+				// echo $pname;
+				$html .= '<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="detaliiProdus.php?id=' . $pid . '">';
+				$html .= $pname . ' ' . $bname . ' ' . $qty . ' ' . $um;
 				$html .= '</a></td>';
 				$html .= '<td>';
-				$html .= number_format(floor($val), 0, '.', '');
-				$html .= '<SUP>'.substr(number_format($val - floor($val), 2, '', ''), 1).'</SUP>';
-					
+				$html .= number_format ( floor ( $val ), 0, '.', '' );
+				$html .= '<SUP>' . substr ( number_format ( $val - floor ( $val ), 2, '', '' ), 1 ) . '</SUP>';
+				
 				if ($pmin < $val) {
 					$html .= '<td>';
-			
-					$query4 = "select c.name xname from price pri, store s, commerciant c where pri.store_id = s.id and s.commerciant_id = c.id and pri.value = ".$pmin;
-					$result4 = mysql_query($query4) or die ("Could not execute query ".$query4);
-					$row4 = mysql_fetch_array($result4);
-					extract($row4);
-			
-					$html .= 'mai ieftin cu '.number_format(($val-$pmin)/$pmin*100, 0, '.', '').'% la '.$xname.' (';
-					$html .= number_format(floor($pmin), 0, '.', '');
-					$html .= '<SUP>'.substr(number_format($pmin - floor($pmin), 2, '', ''), 1).'</SUP>)';
+					
+					$query4 = "select c.name xname from price pri, store s, commerciant c where pri.store_id = s.id and s.commerciant_id = c.id and pri.value = " . $pmin;
+					$result4 = mysql_query ( $query4 ) or die ( "Could not execute query " . $query4 );
+					$row4 = mysql_fetch_array ( $result4 );
+					extract ( $row4 );
+					
+					$html .= 'mai ieftin cu ' . number_format ( ($val - $pmin) / $pmin * 100, 0, '.', '' ) . '% la ' . $xname . ' (';
+					$html .= number_format ( floor ( $pmin ), 0, '.', '' );
+					$html .= '<SUP>' . substr ( number_format ( $pmin - floor ( $pmin ), 2, '', '' ), 1 ) . '</SUP>)';
 					$html .= '</td>';
 				} else {
 					$html .= '<td><IMG src="images/lightbulb.png" height = "20" width = "20" title="Cel mai bun pret"/></td>';
 				}
-				//echo '!3';
+				// echo '!3';
 				$html .= '</td>';
 				$html .= '</tr>';
 			}
-				
 		}
-	}	
+	}
 }
 
 echo $html;
