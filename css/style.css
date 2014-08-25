@@ -4,6 +4,11 @@ a:visited {	color: #0F467F;	text-decoration: none; font-size: large; }
 a:hover { color: #6699cc; text-decoration: none; font-size: large; }
 a:active { color: #6699cc; text-decoration: none; font-size: large;  }
 
+#table1 a:link { color: #0F467F; text-decoration: none; font-size: medium; }
+#table1 a:visited {	color: #0F467F;	text-decoration: none; font-size: medium; }
+#table1 a:hover { color: #6699cc; text-decoration: none; font-size: medium; }
+#table1 a:active { color: #6699cc; text-decoration: none; font-size: medium;  }
+
 .posttitle {
 	color: #0F467F; text-decoration: none; font-size: big;
 }

@@ -182,6 +182,7 @@ CREATE TABLE `product` (
   `pack_id` int(11) default NULL,
   `pack_qty` int(11) default NULL,
   `category_id` int(11) NOT NULL,
+  `month_stock` double
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
@@ -189,13 +190,13 @@ CREATE TABLE `product` (
 -- Salvarea datelor din tabel `product`
 --
 
-INSERT INTO `product` (`id`, `brand_id`, `name`, `um`, `refum`, `qty_um`, `pack_id`, `pack_qty`, `category_id`) VALUES
-(1, 2, 'Apa plata', 'L', 'L', 2, 0, NULL, 2),
-(2, 2, 'Apa plata', 'L', 'L', 0.5, 0, NULL, 2),
-(4, 3, 'Iaurt natural 3% grasime', 'g', 'kg', 140, 0, NULL, 7),
-(5, 3, 'Iaurt natural 3% grasime 6+2', 'buc', 'buc', 8, 4, NULL, 7),
-(6, 4, 'Fitness Fruit', 'g', 'kg', 350, 0, NULL, 8),
-(7, 3, 'Lapte 3.5% grasime', 'l', 'l', 1, 0, NULL, 7);
+INSERT INTO `product` (`id`, `brand_id`, `name`, `um`, `refum`, `qty_um`, `pack_id`, `pack_qty`, `category_id`, `month_stock`) VALUES
+(1, 2, 'Apa plata', 'L', 'L', 2, 0, NULL, 2, 30),
+(2, 2, 'Apa plata', 'L', 'L', 0.5, 0, NULL, 2, 30),
+(4, 3, 'Iaurt natural 3% grasime', 'g', 'kg', 140, 0, NULL, 7, 30),
+(5, 3, 'Iaurt natural 3% grasime 6+2', 'buc', 'buc', 8, 4, NULL, 7, 4),
+(6, 4, 'Fitness Fruit', 'g', 'kg', 350, 0, NULL, 8, 3),
+(7, 3, 'Lapte 3.5% grasime', 'l', 'l', 1, 0, NULL, 7, 15);
 
 -- --------------------------------------------------------
 

@@ -4,6 +4,8 @@
 <TITLE>--</TITLE>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"/>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/treetable.js"></script>
+
 </HEAD>
 
 
@@ -32,71 +34,119 @@
 		</TR>
 		<TR>
 			<TD HEIGHT="1307" valign="top" bgcolor="#FFFFFF">
-				<table width="687" border="0" align="center" cellpadding="0"
+				<table width="800" border="0" align="center" cellpadding="0"
 					cellspacing="0">
 					<tr>
 						<td class="content">
-							<TABLE id = "prod" border="0" cellpadding="2">
+	<table id="table1" border="0">
+
+		<colgroup>
+
+			<col width="400" />
+
+			<col width="0*" />
+
+			<col width="0*" />
+			
+		</colgroup>
+
+		<tr>
+
+			<th>Produs</th>
+
+			<th>Cel mai bun pret</th>
+
+			<th>La</th>
+
+
+		</tr>
 <?php
 require 'db.php';
 
-$queryMain = "select c.id cmainid, c.name cmainname from category c where parent_id=0";
-$resultMain = mysql_query($queryMain) or die ("Could not execute query");
+// Fetch all the roles
+$result = mysql_query ( "select * from category" );
+$roles = array ();
+while ( $role = mysql_fetch_assoc ( $result ) ) {
+	$roles [] = $role;
+}
 
+// Function that builds a tree
+function build_tree($roles, $parent_id = 0) {
+	$tree = array ();
+	foreach ( $roles as $role ) {
+		
+		if ($role ['parent_id'] == $parent_id) {
+			$tree [] = array (
+					'category' => $role,
+					'children' => build_tree ( $roles, $role ['id'] ) 
+			);
+		}
+	}
+	
+	return $tree;
+}
 
-while($rowMain = mysql_fetch_array($resultMain)) {
-	extract($rowMain);
-
-	$html .= '<TR><TD>'.$cmainname.'</TD></TR>';
-	
-	$queryCat = "select c.name cname, c.id catid from category c where c.parent_id=".$cmainid." order by cname";
-	
-	$resultCat = mysql_query($queryCat) or die ("Could not execute query");
-	while($rowCat = mysql_fetch_array($resultCat)) {
-		extract($rowCat);
-		$html .= '<TR><TD>'.$cname.'</TD></TR>';
-	
-		$query = "select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val, 
+// Function that walks and outputs the tree
+function print_tree2($tree, $prefix, $spaces) {
+	if (count ( $tree ) > 0) {
+		$index = 0;
+		foreach ( $tree as $node ) {
+			?>
+		<tr id="table1<?php echo $prefix?>_<?php echo $index ?>">
+			<td><?php echo $spaces ?><a href="#"
+				onclick="treetable_toggleRow('table1<?php echo $prefix?>_<?php echo $index ?>');"><?php print(htmlspecialchars($node['category']['name'])); ?></a></td>
+			<td></td>
+			<td></td>
+		</tr>
+<?php
+			$query = "select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val,
 			(
 			SELECT MIN( value )
 			FROM price
 			WHERE product_id = p.id
-			) pmin 
-		from product p, brand b, price pri 
-		where b.id=p.brand_id and pri.product_id=p.id and p.category_id = ".$catid.
-		" group by p.id";
-	
-		$result = mysql_query($query) or die ("Could not execute query");
-		while($row = mysql_fetch_array($result)) {
-			extract($row);
-		
-			$html .= '<tr><td><a href="detaliiProdus.php?id='.$pid.'">';
-			$html .= $pname.' '.$bname.' '.$qty.' '.$um;
-			$html .= '</a></td>';
-			$html .= '<td>';
-			$html .= number_format(floor($pmin), 0, '.', '');
-			$html .= '<SUP>'.substr(number_format($pmin - floor($pmin), 2, '', ''), 1).'</SUP>';
+			) pmin
+		from product p, brand b, price pri
+		where b.id=p.brand_id and pri.product_id=p.id and p.category_id = " . $node ['category'] ['id'] . " group by p.id";
 			
-			$html .= '<td>';
+			$result = mysql_query ( $query ) or die ( "Could not execute query" );
+			$indexCat = 0;
+			while ( $row = mysql_fetch_array ( $result ) ) {
+				extract ( $row );
+				?>
+		<tr
+			id="table1<?php echo $prefix?>_<?php echo $index ?>_<?php echo $indexCat ?>">
+			<td><?php echo $spaces.'&nbsp;&nbsp;&nbsp;&nbsp;' ?><a href="detaliiProdus.php?id='<?php echo $pid?>'"><?php print(htmlspecialchars($pname.' '.$bname.' '.$qty.' '.$um)); ?></a></td>
+			<td>
+				<?php echo number_format(floor($pmin), 0, '.', '') ?><SUP><?php echo substr(number_format($pmin - floor($pmin), 2, '', ''), 1)?></SUP>
+			</td>
+			<td>
+				<?php 
+				$query2 = "select c.name xname from price pri, store s, commerciant c where pri.store_id = s.id and s.commerciant_id = c.id and pri.value = ".$pmin;
+				$result2 = mysql_query($query2) or die ("Could not execute query ".$query2);
+				$row2 = mysql_fetch_array($result2);
+				extract($row2);
+				?>
+				
+				<?php echo $xname ?> <IMG src="images/lightbulb.png" height = "20" width = "20" title="Cel mai bun pret"/>
 			
-			$query2 = "select c.name xname from price pri, store s, commerciant c where pri.store_id = s.id and s.commerciant_id = c.id and pri.value = ".$pmin;
-			$result2 = mysql_query($query2) or die ("Could not execute query ".$query2);
-			$row2 = mysql_fetch_array($result2);
-			extract($row2);
 			
-			$html .= $xname.'<IMG src="images/lightbulb.png" height = "20" width = "20" title="Cel mai bun pret"/>';
-			$html .= '</td>';
+			</td>
+			</tr>
+	<?php
+				$indexCat++;
+			}
 			
-			$html .= '</td>';
-			$html .= '</tr>';
+			// the recursive thing
+			print_tree2 ( $node ['children'], '_' . $index, $spaces . '&nbsp;&nbsp;&nbsp;&nbsp;' );
+			$index ++;
 		}
 	}
 }
-
-echo $html;
-
+$tree = build_tree ( $roles );
+print_tree2 ( $tree, '', '' );
 ?>
-</TABLE>
+
+</table>							
 						</td>
 					</tr>
 				</table>
