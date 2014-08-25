@@ -82,15 +82,15 @@ CREATE TABLE `commerciant` (
 -- Salvarea datelor din tabel `commerciant`
 --
 
-INSERT INTO `commerciant` (`id`, `name`, `type`) VALUES
-(1, 'Kaufland', 1),
-(2, 'Billa', 1),
-(3, 'Auchan', 2),
-(4, 'Real', 2),
-(5, 'Carrefour Expres', 1),
-(6, 'Lidl', 1),
-(7, 'Penny Market', 1),
-(8, 'Profi', 1);
+INSERT INTO `commerciant` (`id`, `name`, `type`, `img`) VALUES
+(1, 'Kaufland', 1, 'kaufland.jpg'),
+(2, 'Billa', 1, 'billa.jpg'),
+(3, 'Auchan', 2, 'auchan.jpg'),
+(4, 'Real', 2, 'kaufland.jpg'),
+(5, 'Carrefour Expres', 1, 'carrefourexpress.jpg'),
+(6, 'Lidl', 1, 'lidl.jpg'),
+(7, 'Penny Market', 1, 'kaufland.jpg'),
+(8, 'Profi', 1, 'kaufland.jpg');
 
 -- --------------------------------------------------------
 

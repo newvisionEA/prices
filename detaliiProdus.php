@@ -43,7 +43,7 @@
 $id = $_GET['id'];
 require 'db.php';
 
-		$query = "SELECT p.pack_id packid, p.id pid, p.name pname, b.name bname, qty_um, um, c.name cname, s.city city, pri.value pval,
+		$query = "SELECT p.pack_id packid, p.id pid, p.name pname, b.name bname, qty_um, um, c.name cname, c.img cimg, s.city city, pri.value pval, p.month_stock pms, 
 		(
 SELECT MIN( value ) 
 FROM price
@@ -87,11 +87,11 @@ AND p.id=".$id." order by pval";
 	        	extract($rowPack);
 	        	$output .= '<td>'.number_format($pval/($qty_um_pack * $qty_um / $factor2), 2, '.', '').'RON/'.$refum.'</td>';
 	        		        }
-	        $output .= '<td>'.$cname.'</td>';
+	        $output .= '<td><IMG src="images/'.$cimg.'" height = "22" title="'. $cname.'"/></td>';
 	        $output .= '<td>'.$city.'</td>';
 	        if ($pval > $pmin) {
 	          $output .= '<td>cu '.number_format(($pval/$pmin*100-100), 2, '.', '').'% mai scump</td>';
-	          $output .= '<td>platesti cu '.number_format(($pval-$pmin)*15, 2, '.', '').' mai mult pe luna</td>';
+	          $output .= '<td>platesti cu '.number_format(($pval-$pmin)*$pms, 2, '.', '').' Lei mai mult pe luna</td>';
 	        } else {
 			  $output .= '<td><IMG src="images/lightbulb.png" height = "20" width = "20" title="Cel mai bun pret"/></td>';
 			}
