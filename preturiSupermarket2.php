@@ -75,21 +75,12 @@ function print_tree2($tree, $prefix, $spaces, $sid, $comimg) {
 		foreach ( $tree as $node ) {
 			?>
 		<tr id="table1<?php echo $prefix?>_<?php echo $index ?>">
-			<td><?php echo $spaces ?><a href="#"
+			<td><?php echo $spaces ?><img src="images/folder_green_open.png" class="button" alt="" width="16" height="16" /><a href="#"
 				onclick="treetable_toggleRow('table1<?php echo $prefix?>_<?php echo $index ?>');"><?php print(htmlspecialchars($node['category']['name'])); ?></a></td>
 			<td></td>
 			<td></td>
 		</tr>
 <?php
-
-// $query = "select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val,
-// 			(
-// 			SELECT MIN( value )
-// 			FROM price
-// 			WHERE product_id = p.id
-// 			) pmin
-// 		from product p, brand b, price pri
-// 		where b.id=p.brand_id and pri.product_id=p.id and p.category_id = " . $node ['category'] ['id'] . " group by p.id";
 
 $query = "
 select *, p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value price, lmp.value minprice, s2.id minstore_id, c2.img minstore_img, c2.name minstore_name
@@ -111,7 +102,7 @@ and s2.commerciant_id = c2.id
 				?>
 		<tr
 			id="table1<?php echo $prefix?>_<?php echo $index ?>_<?php echo $indexCat ?>">
-			<td><?php echo $spaces.'&nbsp;&nbsp;&nbsp;&nbsp;' ?><a href="detaliiProdus.php?id=<?php echo $pid?>"><?php print(htmlspecialchars($pname.' '.$bname.' '.$qty.' '.$um)); ?></a></td>
+			<td><?php echo $spaces.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' ?><a href="detaliiProdus.php?id=<?php echo $pid?>"><?php print(htmlspecialchars($pname.' '.$bname.' '.$qty.' '.$um)); ?></a></td>
 			<td>
 				<?php echo number_format(floor($price), 0, '.', '') ?><SUP><?php echo substr(number_format($price - floor($price), 2, '', ''), 1)?></SUP>
 			</td>
