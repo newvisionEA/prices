@@ -16,16 +16,6 @@
 			
 		</colgroup>
 
-		<tr>
-
-			<th>Produs</th>
-
-			<th>Cel mai bun pret</th>
-
-			<th>La</th>
-
-
-		</tr>
 <?php
 require 'db.php';
 

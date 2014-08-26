@@ -8,6 +8,8 @@ $search = $_POST['search'];
 <link href="css/menustyles.css" rel="stylesheet" type="text/css">
 <script type='text/javascript' src='js/jquery.min.js'></script>
 <script type='text/javascript' src='js/menu_jquery.js'></script>
+<script type="text/javascript" src="js/treetable.js"></script>
+
 
 </HEAD>
 
