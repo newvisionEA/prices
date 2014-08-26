@@ -72,8 +72,8 @@ function print_tree2($tree, $prefix, $spaces) {
 		<tr
 			id="table1<?php echo $prefix?>_<?php echo $index ?>_<?php echo $indexCat ?>">
 			<td><?php echo $spaces.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' ?><a href="detaliiProdus.php?id='<?php echo $pid?>'"><?php print(htmlspecialchars($pname.' '.$bname.' '.$qty.' '.$um)); ?></a></td>
-			<td>
-				<?php echo number_format(floor($pmin), 0, '.', '') ?><SUP><?php echo substr(number_format($pmin - floor($pmin), 2, '', ''), 1)?></SUP>
+			<td><B>
+				<?php echo number_format(floor($pmin), 0, '.', '') ?></B><SUP><?php echo substr(number_format($pmin - floor($pmin), 2, '', ''), 1)?></SUP>
 			</td>
 			<td>
 				<?php 

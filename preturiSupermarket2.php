@@ -104,7 +104,7 @@ and s2.commerciant_id = c2.id
 			id="table1<?php echo $prefix?>_<?php echo $index ?>_<?php echo $indexCat ?>">
 			<td><?php echo $spaces.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' ?><a href="detaliiProdus.php?id=<?php echo $pid?>"><?php print(htmlspecialchars($pname.' '.$bname.' '.$qty.' '.$um)); ?></a></td>
 			<td>
-				<?php echo number_format(floor($price), 0, '.', '') ?><SUP><?php echo substr(number_format($price - floor($price), 2, '', ''), 1)?></SUP>
+				<B><?php echo number_format(floor($price), 0, '.', '') ?></B><SUP><?php echo substr(number_format($price - floor($price), 2, '', ''), 1)?></SUP>
 			</td>
 			<td>
 				<?php
@@ -117,7 +117,7 @@ and s2.commerciant_id = c2.id
 					$diff = 100.0*(($price-$minprice)/$minprice);
 				?>	
 				<A href="preturiSupermarket2.php?sid=<?php echo $minstore_id?>"><IMG src="images/<?php echo $minstore_img; ?>" height = "22" title="<?php echo $minstore_name ?>"/></A> 
-				<?php echo number_format(floor($minprice), 0, '.', '') ?><SUP><?php echo substr(number_format($minprice - floor($minprice), 2, '', ''), 1)?></SUP>
+				<B><?php echo number_format(floor($minprice), 0, '.', '') ?></B><SUP><?php echo substr(number_format($minprice - floor($minprice), 2, '', ''), 1)?></SUP>
 				(Cu <?php echo number_format($diff, 2) ?>% mai ieftin la <?php echo $minstore_name ?>)			
 				<?php
 				  } 
