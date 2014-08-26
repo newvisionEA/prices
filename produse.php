@@ -83,7 +83,8 @@ function print_tree2($tree, $prefix, $spaces) {
 				extract($row2);
 				?>
 				
-				<A href="preturiSupermarket2.php?sid=<?php echo $sid?>"><IMG src="images/<?php echo $img; ?>" height = "22" title="<?php echo $xname ?>"/></A> 
+				<A href="preturiSupermarket2.php?sid=<?php echo $sid?>"><IMG src="images/<?php echo $img; ?>" height = "22" title="<?php echo $xname ?>"/></A> Cel mai bun pret la
+				<A href="preturiSupermarket2.php?sid=<?php echo $sid?>"><?php echo $xname ?></A>				 
 			
 			
 			</td>
