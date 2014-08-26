@@ -12,6 +12,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Baza de date: `prices`
 --
+DROP DATABASE prices;
 CREATE DATABASE `prices` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `prices`;
 
@@ -20,7 +21,6 @@ USE `prices`;
 --
 -- Structura de tabel pentru tabelul `brand`
 --
-
 CREATE TABLE `brand` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(50) NOT NULL,
@@ -75,6 +75,7 @@ CREATE TABLE `commerciant` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(50) NOT NULL,
   `type` int(11) NOT NULL,
+  img varchar(50) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
@@ -86,11 +87,8 @@ INSERT INTO `commerciant` (`id`, `name`, `type`, `img`) VALUES
 (1, 'Kaufland', 1, 'kaufland.jpg'),
 (2, 'Billa', 1, 'billa.jpg'),
 (3, 'Auchan', 2, 'auchan.jpg'),
-(4, 'Real', 2, 'kaufland.jpg'),
 (5, 'Carrefour Expres', 1, 'carrefourexpress.jpg'),
-(6, 'Lidl', 1, 'lidl.jpg'),
-(7, 'Penny Market', 1, 'kaufland.jpg'),
-(8, 'Profi', 1, 'kaufland.jpg');
+(6, 'Lidl', 1, 'lidl.jpg');
 
 -- --------------------------------------------------------
 
@@ -182,7 +180,7 @@ CREATE TABLE `product` (
   `pack_id` int(11) default NULL,
   `pack_qty` int(11) default NULL,
   `category_id` int(11) NOT NULL,
-  `month_stock` double
+  `month_stock` double,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
@@ -220,11 +218,10 @@ INSERT INTO `store` (`id`, `commerciant_id`, `city`, `address`) VALUES
 (1, 1, 'Timisoara', 'Circumvalatiunii'),
 (2, 1, 'Hunedoara', 'Stadion'),
 (3, 2, 'Timisoara', 'Gheorghe Lazar'),
-(4, 1, 'Deva', '-'),
+(4, 1, 'Deva', 'Zarandului'),
 (5, 5, 'Timisoara', 'Dacia'),
-(6, 6, 'Mangalia', '--'),
-(8, 3, 'Timisoara', '--'),
-(11, 1, 'tyu', '789'),
+(6, 6, 'Mangalia', 'Libertatii'),
+(8, 3, 'Timisoara', 'Torontal'),
 (12, 6, 'Timisoara', 'Torontal');
 
 create or replace view vw_lastprices as
@@ -238,7 +235,7 @@ group by product_id, store_id
 create or replace view vw_minprices as
 (select product_id, min(value) minval
 from vw_lastprices vp
-group by product_id)
+group by product_id);
 
 create or replace view vw_lastminprices as
 (
