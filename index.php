@@ -1,13 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
-
-		<?php require 'menu.php'?>
-
+<?php require 'menu.php'?>
 						<td class="content">
 							<TABLE border="0" cellpadding="2">
 <?php
 ?>
-</TABLE>
+							</TABLE>
 						</td>
 					</tr>
 				</table>
