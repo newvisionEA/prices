@@ -52,6 +52,6 @@ $search = $_POST['search'];
 		</TR>
 		<TR>
 			<TD HEIGHT="1307" valign="top" bgcolor="#FFFFFF">
-				<table width="687" border="0" align="center" cellpadding="0"
+				<table width="800" border="0" align="center" cellpadding="0"
 					cellspacing="0">
 					<tr>
