@@ -1,3 +1,7 @@
+<?php 
+$search = $_POST['search'];
+?>
+<FORM action="search.php" method="POST">
 <TD id="menu" colspan="1">
             <a href="index.php">
               Home
@@ -11,17 +15,16 @@
               Produse
               &nbsp;
             </a>
-            <a href="search.php">
-              Cautare
-              &nbsp;
-            </a>
             <a href="contribute.php">
               Contribuie
               &nbsp;
             </a>
             <!-- div class="fb-like" data-href="http://www.razvanveina.ro" data-width="100" data-layout="button_count" data-show-faces="true" data-send="true"></div-->
+      <input type="text" class="tftextinput" name="search" size="15" maxlength="120" value="<?php echo $search ?>"><input type="submit" value="Cauta" class="tfbutton">
+            
           </TD>
-
+      </FORM>
+          
 <!-- A href="addStoreForm.php">Add store</A>&nbsp;
 <A href="viewStores.php">View stores</A>&nbsp;
 <A href="addBrandForm.php">Add brand</A>&nbsp;

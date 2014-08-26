@@ -42,12 +42,6 @@
 $search = $_POST['search'];
 
 ?>
-<form method="post" name="contact_form"
-action="search.php">
-
-<input autofocus="autofocus" type="text" name="search" value="<?php echo $search;?>"/>
-
-</form>
 
 <TABLE id="prod" class="content" border="0" cellpadding="3">
 <?php
