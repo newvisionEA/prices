@@ -10,6 +10,32 @@ $search = $_POST['search'];
 <script type='text/javascript' src='js/menu_jquery.js'></script>
 <script type="text/javascript" src="js/treetable.js"></script>
 
+<script type="text/javascript">
+
+    treetable_callbacks['eventRowStateChanged'] = 'treetable_eventRowChanged';
+
+    
+
+    function treetable_eventRowChanged(rowId, state) {
+
+      img = document.getElementById(rowId).getElementsByTagName('td')[0].getElementsByTagName('img')[0];
+
+      if (state == 1) {
+
+        img.src = 'images/folder_green_open.png';
+
+      } else {
+
+        img.src = 'images/folder_green.png';
+
+      }
+
+      return (true);
+
+    }  
+
+  </script>
+
 
 </HEAD>
 
@@ -52,6 +78,6 @@ $search = $_POST['search'];
 		</TR>
 		<TR>
 			<TD HEIGHT="1307" valign="top" bgcolor="#FFFFFF">
-				<table width="800" border="0" align="center" cellpadding="0"
+				<table width="900" border="0" align="center" cellpadding="0"
 					cellspacing="0">
 					<tr>

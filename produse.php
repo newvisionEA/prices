@@ -49,7 +49,7 @@ function print_tree2($tree, $prefix, $spaces) {
 		foreach ( $tree as $node ) {
 			?>
 		<tr id="table1<?php echo $prefix?>_<?php echo $index ?>">
-			<td><?php echo $spaces ?><a href="#"
+			<td><?php echo $spaces ?><img src="images/folder_green_open.png" class="button" alt="" width="16" height="16" /><a href="#"
 				onclick="treetable_toggleRow('table1<?php echo $prefix?>_<?php echo $index ?>');"><?php print(htmlspecialchars($node['category']['name'])); ?></a></td>
 			<td></td>
 			<td></td>
@@ -71,7 +71,7 @@ function print_tree2($tree, $prefix, $spaces) {
 				?>
 		<tr
 			id="table1<?php echo $prefix?>_<?php echo $index ?>_<?php echo $indexCat ?>">
-			<td><?php echo $spaces.'&nbsp;&nbsp;&nbsp;&nbsp;' ?><a href="detaliiProdus.php?id='<?php echo $pid?>'"><?php print(htmlspecialchars($pname.' '.$bname.' '.$qty.' '.$um)); ?></a></td>
+			<td><?php echo $spaces.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' ?><a href="detaliiProdus.php?id='<?php echo $pid?>'"><?php print(htmlspecialchars($pname.' '.$bname.' '.$qty.' '.$um)); ?></a></td>
 			<td>
 				<?php echo number_format(floor($pmin), 0, '.', '') ?><SUP><?php echo substr(number_format($pmin - floor($pmin), 2, '', ''), 1)?></SUP>
 			</td>
