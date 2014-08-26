@@ -66,7 +66,7 @@ while ( $row = mysql_fetch_array ( $result ) ) {
 		$output .= '<td>'.number_format ( $pval / ($qty_um_pack * $qty_um / $factor2), 2, '.', '' ).'RON/'.$refum.'</td>';
 	}
 	
-	$output .= '<td><IMG src="images/'.$cimg.'" height = "22" title="'.$cname.'"/> '.$city.', '.$adr.'</td>';
+	$output .= '<td><IMG src="images/'.$cimg.'" width = "50" title="'.$cname.'"/> '.$city.', '.$adr.'</td>';
 	
 	if ($pval > $pmin) {
 		$temp = ($pval - $pmin) * $pms;

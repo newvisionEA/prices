@@ -33,7 +33,7 @@ if ($sid != null) {
 	$comid = $cid;
 	$comimg = $img;
 	
-	$html .= '<TR><TD colspan="3"><IMG src="images/'.$img.'" height = "20" title="'.$cname.'"/><B>Preturi ';
+	$html .= '<TR><TD colspan="3"><IMG src="images/'.$img.'" width = "50" title="'.$cname.'"/> <B>Preturi ';
 	$html .= $comname;
 	$html .= ' ' . $scity . ', ' . $saddress . '</B></td></tr>';
 	
@@ -111,12 +111,12 @@ and s2.commerciant_id = c2.id
 				  if ($price == $minprice)
 				  { 
 				?>				
-				<IMG src="images/<?php echo $comimg; ?>" height = "22" title="Cel mai bun pret aici"/> Cel mai bun pret aici !
+				<IMG src="images/<?php echo $comimg; ?>" width = "50" title="Cel mai bun pret aici"/> Cel mai bun pret aici !
 				<?php
 				  } else {
 					$diff = 100.0*(($price-$minprice)/$minprice);
 				?>	
-				<A href="preturiSupermarket2.php?sid=<?php echo $minstore_id?>"><IMG src="images/<?php echo $minstore_img; ?>" height = "22" title="<?php echo $minstore_name ?>"/></A> 
+				<A href="preturiSupermarket2.php?sid=<?php echo $minstore_id?>"><IMG src="images/<?php echo $minstore_img; ?>" width = "50" title="<?php echo $minstore_name ?>"/></A> 
 				<B><?php echo number_format(floor($minprice), 0, '.', '') ?></B><SUP><?php echo substr(number_format($minprice - floor($minprice), 2, '', ''), 1)?></SUP>
 				(Cu <?php echo number_format($diff, 2) ?>% mai ieftin la <?php echo $minstore_name ?>)			
 				<?php

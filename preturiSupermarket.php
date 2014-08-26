@@ -19,7 +19,7 @@ if ($cid == null && $sid == null)
 		extract($row);
 	
 		$html .= '<tr><td><a href="preturiSupermarket.php?cid='.$cid.'">Preturi ';
-		$html .= '<IMG src="images/'.$img.'" height = "20" title="'.$cname.'"/>';
+		$html .= '<IMG src="images/'.$img.'" width = "50" title="'.$cname.'"/>';
 		$html .= '</a></td>';
 		$html .= '</tr>';
 	}
@@ -38,7 +38,7 @@ else if ($cid != null) {
 		extract($row);
 	
 		$html .= '<tr><td><a href="preturiSupermarket2.php?sid='.$sid.'">Preturi ';
-		//$html .= '<IMG src="images/'.$img.'" height = "20" title="'.$cname.'"/>';		
+		//$html .= '<IMG src="images/'.$img.'" width = "50" title="'.$cname.'"/>';		
 		$html .= $comname.' '.$city.' '.$address;
 		$html .= '</a></td>';
 		$html .= '</tr>';
