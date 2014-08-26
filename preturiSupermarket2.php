@@ -2,8 +2,10 @@
 <HTML>
 <HEAD>
 <TITLE>--</TITLE>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"/>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/treetable.js"></script>
+
 </HEAD>
 
 
@@ -32,118 +34,157 @@
 		</TR>
 		<TR>
 			<TD HEIGHT="1307" valign="top" bgcolor="#FFFFFF">
-				<table width="687" border="0" align="center" cellpadding="0"
+				<table width="800" border="0" align="center" cellpadding="0"
 					cellspacing="0">
 					<tr>
 						<td class="content">
-							<TABLE id="prod" border="0" cellpadding="2">
+	<table id="table1" border="0">
+
+		<colgroup>
+
+			<col width="300" />
+
+			<col width="100" />
+
+			<col width="0*" />
+			
+		</colgroup>
+
 <?php
 require 'db.php';
 
-$cid = isset ( $_GET ['cid'] ) ? $_GET ['cid'] : null;
 $sid = isset ( $_GET ['sid'] ) ? $_GET ['sid'] : null;
-
 if ($sid != null) {
 	$query = "select c.name cname, c.id cid, s.city scity, s.address saddress from commerciant c, store s where c.id=s.commerciant_id and s.id = " . $sid;
 	$result = mysql_query ( $query ) or die ( "Could not execute query" );
 	$row = mysql_fetch_array ( $result );
 	extract ( $row );
-	
-	$query = "select c.name cname, c.id cid from commerciant c, store s where c.id=s.commerciant_id and s.id = " . $sid;
+
+	$query = "select c.img, c.name cname, c.id cid from commerciant c, store s where c.id=s.commerciant_id and s.id = " . $sid;
 	$result = mysql_query ( $query ) or die ( "Could not execute query" );
 	$row = mysql_fetch_array ( $result );
 	extract ( $row );
-	
+
 	$comname = $cname;
 	$comid = $cid;
+	$comimg = $img;
 	
-	$html .= '<TR><TD><B>Preturi ' . $cname . ' ' . $scity . ', ' . $saddress . '</B></td></tr>';
+	$html .= '<TR><TD colspan="3"><IMG src="images/'.$img.'" height = "20" title="'.$cname.'"/><B>Preturi ';
+	$html .= $comname;
+	$html .= ' ' . $scity . ', ' . $saddress . '</B></td></tr>';
 	
-	$query = "select c.name maincatname, c.id maincatid from category c where parent_id=0";
-	$result = mysql_query ( $query ) or die ( "Could not execute query" );
-	
-	while ( $row = mysql_fetch_array ( $result ) ) {
-		extract ( $row );
+	echo $html;
+}	
+
+?>
+
+
+
+<?php 
+// Fetch all categories
+$result = mysql_query ( "select * from category" );
+$roles = array ();
+while ( $role = mysql_fetch_assoc ( $result ) ) {
+	$roles [] = $role;
+}
+
+// Function that builds a tree
+function build_tree($roles, $parent_id = 0) {
+	$tree = array ();
+	foreach ( $roles as $role ) {
 		
-		$firstCat = false;
-		$query2 = "select name catname, id catid from category where parent_id = " . $maincatid;
-		// echo $query2;
-		$result2 = mysql_query ( $query2 ) or die ( "Could not execute query" );
-		// subcategorii
-		while ( $row2 = mysql_fetch_array ( $result2 ) ) {
-			
-			if (! $firstCat) {
-				$html .= '<TR><TD>' . $maincatname . '</td></tr>';
-				$firstCat = true;
+		if ($role ['parent_id'] == $parent_id) {
+			$tree [] = array (
+					'category' => $role,
+					'children' => build_tree ( $roles, $role ['id'] ) 
+			);
+		}
+	}
+	
+	return $tree;
+}
+
+// Function that walks and outputs the tree
+function print_tree2($tree, $prefix, $spaces, $sid, $comimg) {
+	if (count ( $tree ) > 0) {
+		$index = 0;
+		foreach ( $tree as $node ) {
+			?>
+		<tr id="table1<?php echo $prefix?>_<?php echo $index ?>">
+			<td><?php echo $spaces ?><a href="#"
+				onclick="treetable_toggleRow('table1<?php echo $prefix?>_<?php echo $index ?>');"><?php print(htmlspecialchars($node['category']['name'])); ?></a></td>
+			<td></td>
+			<td></td>
+		</tr>
+<?php
+
+// $query = "select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val,
+// 			(
+// 			SELECT MIN( value )
+// 			FROM price
+// 			WHERE product_id = p.id
+// 			) pmin
+// 		from product p, brand b, price pri
+// 		where b.id=p.brand_id and pri.product_id=p.id and p.category_id = " . $node ['category'] ['id'] . " group by p.id";
+
+$query = "
+select *, p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value price, lmp.value minprice, s2.id minstore_id, c2.img minstore_img, c2.name minstore_name
+from vw_lastprices pri, store s, product p, brand b, vw_lastminprices2 lmp, store s2, commerciant c2
+where s.id=".$sid." 
+and pri.store_id = s.id 
+and p.id=pri.product_id 
+and p.category_id=". $node ['category'] ['id'] .
+" and b.id = p.brand_id
+and lmp.product_id = pri.product_id
+and lmp.store_id = s2.id
+and s2.commerciant_id = c2.id
+						";
+			//echo $query;
+			$result = mysql_query ( $query ) or die ( "Could not execute query" );
+			$indexCat = 0;
+			while ( $row = mysql_fetch_array ( $result ) ) {
+				extract ( $row );
+				?>
+		<tr
+			id="table1<?php echo $prefix?>_<?php echo $index ?>_<?php echo $indexCat ?>">
+			<td><?php echo $spaces.'&nbsp;&nbsp;&nbsp;&nbsp;' ?><a href="detaliiProdus.php?id='<?php echo $pid?>'"><?php print(htmlspecialchars($pname.' '.$bname.' '.$qty.' '.$um)); ?></a></td>
+			<td>
+				<?php echo number_format(floor($price), 0, '.', '') ?><SUP><?php echo substr(number_format($price - floor($price), 2, '', ''), 1)?></SUP>
+			</td>
+			<td>
+				<?php
+				  if ($price == $minprice)
+				  { 
+				?>				
+				<IMG src="images/<?php echo $comimg; ?>" height = "22" title="Cel mai bun pret aici"/> Cel mai bun pret aici !
+				<?php
+				  } else {
+					$diff = 100.0*(($price-$minprice)/$minprice);
+				?>	
+				<A href="preturiSupermarket2.php?sid=<?php echo $minstore_id?>"><IMG src="images/<?php echo $minstore_img; ?>" height = "22" title="<?php echo $minstore_name ?>"/></A> 
+				<?php echo number_format(floor($minprice), 0, '.', '') ?><SUP><?php echo substr(number_format($minprice - floor($minprice), 2, '', ''), 1)?></SUP>
+				(Cu <?php echo number_format($diff, 2) ?>% mai ieftin)			
+				<?php
+				  } 
+				?>				
+				</td>
+			</tr>
+	<?php
+				$indexCat++;
 			}
 			
-			extract ( $row2 );
-			
-			// $query3 = "select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val,
-			// (
-			// SELECT MIN( value )
-			// FROM price
-			// WHERE product_id = p.id
-			// ) pmin
-			// from product p, brand b, price pri where b.id=p.brand_id and pri.product_id=p.id and pri.store_id=".$sid.' and p.category_id = '.$catid;
-			
-			$query3 = "select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val,
-			(
-			SELECT MIN( value )
-			FROM price
-			WHERE product_id = p.id
-			) pmin
-			from product p, brand b, price pri, store s where s.commerciant_id=" . $comid . " and 
-			pri.store_id =s.id and b.id=p.brand_id and pri.product_id=p.id and p.category_id=" . $catid . " group by p.id";
-			// echo $query3.'<br/>';
-			$result3 = mysql_query ( $query3 ) or die ( "Could not execute query " . $query3 );
-			
-			$firstPrice = false;
-			// echo '!1';
-			while ( $row3 = mysql_fetch_array ( $result3 ) ) {
-				// echo '!2';
-				if (! $firstPrice) {
-					$html .= '<TR><TD>' . $catname . '</td></tr>';
-					$firstPrice = true;
-				}
-				
-				extract ( $row3 );
-				
-				// echo $pname;
-				$html .= '<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="detaliiProdus.php?id=' . $pid . '">';
-				$html .= $pname . ' ' . $bname . ' ' . $qty . ' ' . $um;
-				$html .= '</a></td>';
-				$html .= '<td>';
-				$html .= number_format ( floor ( $val ), 0, '.', '' );
-				$html .= '<SUP>' . substr ( number_format ( $val - floor ( $val ), 2, '', '' ), 1 ) . '</SUP>';
-				
-				if ($pmin < $val) {
-					$html .= '<td>';
-					
-					$query4 = "select c.name xname from price pri, store s, commerciant c where pri.store_id = s.id and s.commerciant_id = c.id and pri.value = " . $pmin;
-					$result4 = mysql_query ( $query4 ) or die ( "Could not execute query " . $query4 );
-					$row4 = mysql_fetch_array ( $result4 );
-					extract ( $row4 );
-					
-					$html .= 'mai ieftin cu ' . number_format ( ($val - $pmin) / $pmin * 100, 0, '.', '' ) . '% la ' . $xname . ' (';
-					$html .= number_format ( floor ( $pmin ), 0, '.', '' );
-					$html .= '<SUP>' . substr ( number_format ( $pmin - floor ( $pmin ), 2, '', '' ), 1 ) . '</SUP>)';
-					$html .= '</td>';
-				} else {
-					$html .= '<td><IMG src="images/lightbulb.png" height = "20" width = "20" title="Cel mai bun pret"/></td>';
-				}
-				// echo '!3';
-				$html .= '</td>';
-				$html .= '</tr>';
-			}
+			// the recursive thing
+			print_tree2 ( $node ['children'], '_' . $index, $spaces . '&nbsp;&nbsp;&nbsp;&nbsp;', $sid, $comimg);
+			$index ++;
 		}
 	}
 }
 
-echo $html;
-
+$tree = build_tree ( $roles );
+print_tree2 ( $tree, '', '', $sid, $comimg );
 ?>
-</TABLE>
+
+</table>							
 						</td>
 					</tr>
 				</table>

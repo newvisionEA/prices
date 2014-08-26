@@ -121,13 +121,13 @@ function print_tree2($tree, $prefix, $spaces) {
 			</td>
 			<td>
 				<?php 
-				$query2 = "select c.name xname, c.img img from price pri, store s, commerciant c where pri.store_id = s.id and s.commerciant_id = c.id and pri.value = ".$pmin;
+				$query2 = "select c.name xname, c.img img, s.id sid from price pri, store s, commerciant c where pri.store_id = s.id and s.commerciant_id = c.id and pri.value = ".$pmin;
 				$result2 = mysql_query($query2) or die ("Could not execute query ".$query2);
 				$row2 = mysql_fetch_array($result2);
 				extract($row2);
 				?>
 				
-				<IMG src="images/<?php echo $img; ?>" height = "22" title="<?php echo $xname ?>"/> <IMG src="images/lightbulb.png" height = "20" width = "20" title="Cel mai bun pret"/>
+				<A href="preturiSupermarket2.php?sid=<?php echo $sid?>"><IMG src="images/<?php echo $img; ?>" height = "22" title="<?php echo $xname ?>"/></A> 
 			
 			
 			</td>

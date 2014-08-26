@@ -4,17 +4,9 @@
               &nbsp;
             </a>
             <a href="preturiSupermarket.php">
-              Preturi supermarket
+              Preturi
               &nbsp;
             </a>
-            <!--  a href="preturiFarmacii.php">
-              Preturi farmacii
-              &nbsp;
-            </a>
-            <a href="preturiBenzinarii.php">
-              Preturi benzinarii
-              &nbsp;
-            </a-->
             <a href="produse.php">
               Produse
               &nbsp;

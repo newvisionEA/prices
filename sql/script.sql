@@ -226,3 +226,29 @@ INSERT INTO `store` (`id`, `commerciant_id`, `city`, `address`) VALUES
 (8, 3, 'Timisoara', '--'),
 (11, 1, 'tyu', '789'),
 (12, 6, 'Timisoara', 'Torontal');
+
+create or replace view vw_lastprices as
+(
+select product_id, store_id, max(rdate) lastdate, pri.value
+from price pri, product p, brand b, store s
+where pri.product_id=p.id and b.id = p.brand_id and pri.store_id=s.id
+group by product_id, store_id
+);
+
+create or replace view vw_minprices as
+(select product_id, min(value) minval
+from vw_lastprices vp
+group by product_id)
+
+create or replace view vw_lastminprices as
+(
+select mp.product_id product_id, lp.store_id, minval, value
+from vw_minprices mp, vw_lastprices lp
+where mp.product_id=lp.product_id 
+and mp.minval=lp.value
+);
+
+create or replace view vw_lastminprices2 as
+(select min(store_id) store_id, product_id, value
+from vw_lastminprices lmp
+group by product_id, value);

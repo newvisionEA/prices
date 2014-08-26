@@ -45,14 +45,14 @@ $sid = isset($_GET['sid']) ? $_GET['sid'] : null;
 
 if ($cid == null && $sid == null)
 {
-	$query = "select c.name cname, c.id cid from commerciant c where c.type=1 or c.type = 2 order by c.name";
+	$query = "select c.name cname, c.img img, c.id cid from commerciant c where c.type=1 or c.type = 2 order by c.name";
 	$result = mysql_query($query) or die ("Could not execute query");
 	
 	while($row = mysql_fetch_array($result)) {
 		extract($row);
 	
 		$html .= '<tr><td><a href="preturiSupermarket.php?cid='.$cid.'">Preturi ';
-		$html .= $cname;
+		$html .= '<IMG src="images/'.$img.'" height = "20" title="'.$cname.'"/>';
 		$html .= '</a></td>';
 		$html .= '</tr>';
 	}
@@ -71,6 +71,7 @@ else if ($cid != null) {
 		extract($row);
 	
 		$html .= '<tr><td><a href="preturiSupermarket2.php?sid='.$sid.'">Preturi ';
+		//$html .= '<IMG src="images/'.$img.'" height = "20" title="'.$cname.'"/>';		
 		$html .= $comname.' '.$city.' '.$address;
 		$html .= '</a></td>';
 		$html .= '</tr>';
