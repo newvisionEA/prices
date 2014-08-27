@@ -1,4 +1,7 @@
 <HTML>
+<HEAD>
+<TITLE>Preturi supermarket - Contribuie si tu</TITLE>
+
 <?php require 'menu.php'?>
 						<td class="content">
 

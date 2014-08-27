@@ -1,8 +1,6 @@
 <?php 
 $search = $_POST['search'];
 ?>
-<HEAD>
-<TITLE>Preturi supermarket</TITLE>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"/>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/menustyles.css" rel="stylesheet" type="text/css">

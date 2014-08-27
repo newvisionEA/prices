@@ -1,5 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
+<HEAD>
+<TITLE>Preturi supermarket - Cautare</TITLE>
+
 		<?php require 'menu.php'?>		 
 						<td class="content">
 							

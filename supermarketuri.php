@@ -1,5 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
+<HEAD>
+<TITLE>Preturi supermarket - Supermarketuri</TITLE>
+
 <?php require 'menu.php'?>
 						<td class="content">
 							<table id="table1" border="0">
