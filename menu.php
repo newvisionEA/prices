@@ -22,8 +22,8 @@ $search = $_POST['search'];
 		CELLSPACING="0" ID="Table_01">
 		<TR>
 			<TD WIDTH="4" ROWSPAN="5" BGCOLOR="#124989"><IMG
-				SRC="images/spacer.gif" WIDTH="4" HEIGHT="300" ALT="" /></TD>
-			<TD WIDTH="1000" HEIGHT="100" class="companyname2">
+				SRC="images/spacer.gif" WIDTH="4" HEIGHT="200" ALT="" /></TD>
+			<TD WIDTH="1000" HEIGHT="10" class="companyname2">
 				<table BORDER="0">
 					<tr><FORM action="search.php" method="POST">					
 						<td width="1000" align="right">     <input type="text" class="tftextinput" name="search" size="15" maxlength="120"><input type="submit" value="Cauta" class="tfbutton">
