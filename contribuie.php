@@ -6,7 +6,7 @@
 action="addPriceHandler.php">
  
     
-	     <BR/>Product id:
+	     <BR/>Produs
     
     <?php
 require 'db.php';
@@ -30,7 +30,7 @@ mysql_close($connection);
 echo $rssfeed;
 ?>
 
-	     <BR/>Store id:
+	     <BR/>Magazin
     
     <?php
     require 'db.php';
@@ -54,11 +54,11 @@ $rssfeed .= '</select>';
 mysql_close($connection);
 echo $rssfeed;
 ?>
-       <BR/>Price:
+       <BR/>Pret
     <input type="text" name="price" size="20"/>
     
-           <BR/>Date (yyyy.mm.dd hh:mm):
-    <input type="text" name="date" size="20"/>
+           <BR/>Data (yyyy.mm.dd hh:mm)
+    <input type="text" name="date" size="20" value="<?php echo date('Y.m.d')?> 12:00"/>
     
     <BR/>
     <input type="submit" value="Submit">
