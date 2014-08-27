@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <?php require 'menu.php'?>		 
@@ -10,23 +11,25 @@ $id = $_GET ['id'];
 require 'db.php';
 
 $query = "
-	SELECT 
-		p.pack_id packid, p.id pid, p.name pname, b.name bname, qty_um, um, 
-		c.name cname, c.img cimg, s.city city, s.address adr, pri.value pval, p.month_stock pms, 
-		(
-			SELECT MIN( value ) 
-			FROM price
-			WHERE product_id =".$id."
-		) pmin, 
-		conv.factor factor, refum		
-	FROM product p, brand b, price pri, store s, commerciant c, conversions conv
-	WHERE p.brand_id = b.id
-	AND pri.product_id = p.id
-	AND pri.store_id = s.id
-	AND c.id = s.commerciant_id
-	AND lower(conv.from_um) = lower(p.um)
-	AND lower(conv.to_um) = lower(p.refum) 
-	AND p.id=".$id." order by pval";
+		SELECT 
+			p.pack_id packid, p.id pid, p.name pname, b.name bname, qty_um, um, c.name cname, 
+			c.img cimg, ci.name city, s.address adr, pri.value pval, p.month_stock pms, 
+			( 
+				SELECT MIN( value ) 
+				FROM price 
+				WHERE product_id =".$id." ) pmin, 
+			conv.factor factor, refum	
+		FROM 
+			product p, brand b, price pri, store s, commerciant c, conversions conv, city ci
+		WHERE p.brand_id = b.id 
+			AND pri.product_id = p.id 
+			AND pri.store_id = s.id 
+			AND ci.id = s.city_id
+			AND c.id = s.commerciant_id 
+			AND lower(conv.from_um) = lower(p.um) 
+			AND lower(conv.to_um) = lower(p.refum) 
+			AND p.id=".$id." order by pval
+";
 
 $result = mysql_query ( $query ) or die ( "Could not execute query ".$query );
 

@@ -2,30 +2,26 @@
 <HTML>
 		<?php require 'menu.php'?>		 
 						<td class="content">
-	<table id="table1" border="0">
-
+	<table id="table1"  border="0">
 		<colgroup>
-
 			<col width="300" />
-
 			<col width="100" />
-
 			<col width="0*" />
-			
 		</colgroup>
 
 <?php
 require 'db.php';
 
 $sid = isset ( $_GET ['sid'] ) ? $_GET ['sid'] : null;
+
 if ($sid != null) {
 	$query = "select c.name cname, c.id cid, ci.name scity, s.address saddress from commerciant c, store s, city ci where ci.id=s.city_id and c.id=s.commerciant_id and s.id = " . $sid;
-	$result = mysql_query ( $query ) or die ( "Could not execute query" );
+	$result = mysql_query ( $query ) or die ( "Could not execute query".$query );
 	$row = mysql_fetch_array ( $result );
 	extract ( $row );
 
 	$query = "select c.img, c.name cname, c.id cid from commerciant c, store s where c.id=s.commerciant_id and s.id = " . $sid;
-	$result = mysql_query ( $query ) or die ( "Could not execute query" );
+	$result = mysql_query ( $query ) or die ( "Could not execute query".$query );
 	$row = mysql_fetch_array ( $result );
 	extract ( $row );
 
@@ -46,7 +42,8 @@ if ($sid != null) {
 
 <?php 
 // Fetch all categories
-$result = mysql_query ( "select * from category" );
+$query = "select * from category";
+$result = mysql_query ( $query ) or die ( "Could not execute query ".$query );
 $roles = array ();
 while ( $role = mysql_fetch_assoc ( $result ) ) {
 	$roles [] = $role;
@@ -95,7 +92,7 @@ and lmp.store_id = s2.id
 and s2.commerciant_id = c2.id
 						";
 			//echo $query;
-			$result = mysql_query ( $query ) or die ( "Could not execute query" );
+			$result = mysql_query ( $query ) or die ( "Could not execute query ".$query );
 			$indexCat = 0;
 			while ( $row = mysql_fetch_array ( $result ) ) {
 				extract ( $row );

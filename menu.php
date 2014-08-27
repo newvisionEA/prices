@@ -41,7 +41,7 @@ $search = $_POST['search'];
   <div id='cssmenu' class="rowMenu">
   <ul>
      <li class=''><a href='orase.php'><span>Orase</span></a></li>
-     <li class=''><a href='preturiSupermarket.php'><span>Supermarketuri</span></a></li>
+     <li class=''><a href='supermarketuri.php'><span>Supermarketuri</span></a></li>
      <li class='last'><a href='produse.php'><span>Preturi</span></a></li>
      <!-- li class='last'><a href='contribuie.php'><span>Contribuie</span></a></li-->`
   </ul>
