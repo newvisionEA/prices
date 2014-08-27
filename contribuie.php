@@ -61,7 +61,7 @@ echo $rssfeed;
     <input type="text" name="price" size="20"/>
     
            <BR/>Data (yyyy.mm.dd hh:mm)
-    <input type="text" name="date" size="20" value="<?php echo date('Y.m.d')?> 12:00"/>
+    <input type="text" name="date" size="20" value="<?php echo date('Y.m.d H:i')?>"/>
     
     <BR/>
     <input type="submit" value="Submit">
