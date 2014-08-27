@@ -19,7 +19,7 @@ require 'db.php';
 
 $sid = isset ( $_GET ['sid'] ) ? $_GET ['sid'] : null;
 if ($sid != null) {
-	$query = "select c.name cname, c.id cid, s.city scity, s.address saddress from commerciant c, store s where c.id=s.commerciant_id and s.id = " . $sid;
+	$query = "select c.name cname, c.id cid, ci.name scity, s.address saddress from commerciant c, store s, city ci where ci.id=s.city_id and c.id=s.commerciant_id and s.id = " . $sid;
 	$result = mysql_query ( $query ) or die ( "Could not execute query" );
 	$row = mysql_fetch_array ( $result );
 	extract ( $row );

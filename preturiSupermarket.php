@@ -26,14 +26,14 @@ if ($cid == null && $sid == null)
 }
 else if ($cid != null) {
 	$query = "select * from commerciant c where id = ".$cid;
-	$result = mysql_query($query) or die ("Could not execute query");
+	$result = mysql_query($query) or die ("Could not execute query ".$query);
 	$row = mysql_fetch_array($result);
 	extract($row);
 		
 	$comname = $name;
 	
-	$query = "select s.city, s.address, s.id sid from store s where commerciant_id = ".$cid;
-	$result = mysql_query($query) or die ("Could not execute query");
+	$query = "select ci.name city, s.address, s.id sid from store s, city ci where s.city_id = ci.id and commerciant_id = ".$cid;
+	$result = mysql_query($query) or die ("Could not execute query ".$query);
 	while($row = mysql_fetch_array($result)) {
 		extract($row);
 	
@@ -45,7 +45,7 @@ else if ($cid != null) {
 	}
 } else if ($sid != null) {
 	$query = "select c.name cname, c.id cid from commerciant c, store s where c.id=s.commerciant_id and s.id = ".$sid;
-	$result = mysql_query($query) or die ("Could not execute query");
+	$result = mysql_query($query) or die ("Could not execute query ".$query);
 	$row = mysql_fetch_array($result);
 	extract($row);
 	

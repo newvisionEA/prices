@@ -17,7 +17,14 @@ CREATE DATABASE `prices` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `prices`;
 
 -- --------------------------------------------------------
+CREATE TABLE `city` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
+insert into city (id, name)
+values (1, 'Timisoara'), (2, 'Hunedoara'), (3, 'Cluj');
 --
 -- Structura de tabel pentru tabelul `brand`
 --
@@ -108,9 +115,7 @@ CREATE TABLE `commerciant_type` (
 
 INSERT INTO `commerciant_type` (`id`, `name`) VALUES
 (1, 'Supermarket'),
-(2, 'Hypermarket'),
-(3, 'Benzinarie'),
-(4, 'Farmacie');
+(2, 'Hypermarket');
 
 -- --------------------------------------------------------
 
@@ -146,6 +151,12 @@ CREATE TABLE `price` (
   `store_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+CREATE TABLE `price_hist` (
+  `product_id` int(11) NOT NULL,
+  `rdate` datetime NOT NULL,
+  `value` double NOT NULL,
+  `store_id` int(11) NOT NULL
+);
 --
 -- Salvarea datelor din tabel `price`
 --
@@ -156,8 +167,19 @@ INSERT INTO `price` (`product_id`, `rdate`, `value`, `store_id`) VALUES
 (1, '2013-09-09 13:45:00', 2.46, 8),
 (4, '2013-09-09 13:45:00', 1, 5),
 (4, '2013-09-09 13:45:00', 0.99, 12),
+(4, '2013-09-09 13:45:00', 0.99, 8),
+(6, '2013-09-21 21:00:00', 11.4, 5),
+(7, '2013-09-21 21:00:00', 4.69, 5),
+(5, '2013-09-22 21:00:00', 5.93, 8),
+(7, '2013-09-22 21:00:00', 4.69, 8);
+
+INSERT INTO `price_hist` (`product_id`, `rdate`, `value`, `store_id`) VALUES
+(1, '2013-09-09 13:45:00', 2.45, 12),
+(1, '2013-09-09 13:45:00', 2.75, 5),
+(1, '2013-09-09 13:45:00', 2.46, 8),
+(4, '2013-09-09 13:45:00', 1, 5),
+(4, '2013-09-09 13:45:00', 0.99, 12),
 (5, '2013-09-09 13:45:00', 6, 8),
-(4, '2013-09-09 13:45:00', 0.99, 6),
 (4, '2013-09-09 13:45:00', 0.99, 8),
 (6, '2013-09-21 21:00:00', 11.4, 5),
 (7, '2013-09-21 21:00:00', 4.69, 5),
@@ -205,7 +227,7 @@ INSERT INTO `product` (`id`, `brand_id`, `name`, `um`, `refum`, `qty_um`, `pack_
 CREATE TABLE `store` (
   `id` int(11) NOT NULL auto_increment,
   `commerciant_id` int(11) NOT NULL,
-  `city` varchar(50) NOT NULL,
+  `city_id` int(11) NOT NULL,
   `address` varchar(100) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
@@ -214,22 +236,19 @@ CREATE TABLE `store` (
 -- Salvarea datelor din tabel `store`
 --
 
-INSERT INTO `store` (`id`, `commerciant_id`, `city`, `address`) VALUES
-(1, 1, 'Timisoara', 'Circumvalatiunii'),
-(2, 1, 'Hunedoara', 'Stadion'),
-(3, 2, 'Timisoara', 'Gheorghe Lazar'),
-(4, 1, 'Deva', 'Zarandului'),
-(5, 5, 'Timisoara', 'Dacia'),
-(6, 6, 'Mangalia', 'Libertatii'),
-(8, 3, 'Timisoara', 'Torontal'),
-(12, 6, 'Timisoara', 'Torontal');
+INSERT INTO `store` (`id`, `commerciant_id`, `city_id`, `address`) VALUES
+(1, 1, 1, 'Circumvalatiunii'),
+(2, 1, 2, 'Stadion'),
+(3, 2, 1, 'Gheorghe Lazar'),
+(5, 5, 1, 'Dacia'),
+(8, 3, 1, 'Torontal'),
+(12, 6, 1, 'Torontal');
 
 create or replace view vw_lastprices as
 (
-select product_id, store_id, max(rdate) lastdate, pri.value
+select product_id, store_id, rdate lastdate, pri.value
 from price pri, product p, brand b, store s
 where pri.product_id=p.id and b.id = p.brand_id and pri.store_id=s.id
-group by product_id, store_id
 );
 
 create or replace view vw_minprices as
