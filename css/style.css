@@ -1,4 +1,5 @@
 a:link {
+	font-family: 'Open Sans', sans-serif;
 	color: #0F467F;
 	text-decoration: none;
 	font-size: large;
@@ -604,6 +605,10 @@ img.gal:hover {
 
 #autdiv, #logindiv table tr td input, #logindiv table tr td, #signindiv table tr td input, #signindiv table tr td {
 	height: 15px;
+	font-size: small;
+}
+
+#logindiv table tr td input, #signindiv table tr td input {
 	font-size: x-small;
 }
 
