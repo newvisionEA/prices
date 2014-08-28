@@ -591,8 +591,6 @@ img.gal:hover {
 	margin: 0 4px 0 0;
 }
 
-
-
 /* login */
 #userdiv, #logindiv, #signindiv {
   display:none;
@@ -604,7 +602,13 @@ img.gal:hover {
   display:none;
 } 
 
-#autdiv #logindiv table tr td input, #logindiv table tr td, #signindiv table tr td input, #signindiv table tr td {
+#autdiv, #logindiv table tr td input, #logindiv table tr td, #signindiv table tr td input, #signindiv table tr td {
 	height: 15px;
 	font-size: x-small;
+}
+
+#autdiv a {
+	height: 15px;
+	font-size: small;	
+	text-decoration: underline;
 }

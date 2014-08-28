@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <HTML>
 <HEAD>
 <TITLE>Preturi supermarket - Contribuie si tu</TITLE>

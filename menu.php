@@ -77,16 +77,18 @@ $search = $_POST['search'];
 			    $("#signindiv").hide(100);
 			    $("#oklogin").hide(0);
 			    $("#cancel").hide(0);
-			    $("#userdiv").text(data);
-			    $("#userdiv").show(0);
 			    
 			    if (data.indexOf("ERROR") == 1) {
-				    $("#signin").show(0);
+				    $("#userdiv").text(data);
+				    $("#userdiv").show(0);
+			        $("#signin").show(0);
 				    $("#login").show(0);
 				    setTimeout( function(){
 					        $('#userdiv').fadeOut();			    	        
 					    }, 2000);
-				    }		    			    
+				    }	else {
+				    	$('#autdiv').html('Esti autentificat ca <B>'+data+'</B>. <A href="logout.php">Iesire</A>');
+				    }	    			    
 			});
 		});		
   });
@@ -104,15 +106,15 @@ $search = $_POST['search'];
 				<table BORDER="0">
 					<tr>		
 						<td width="200" align="left">
-		<?php			
+				<div id="autdiv">
+						<?php			
 			if (isset($_SESSION['user'])) {
 			?>
-				<div id="autdiv">
-				Esti autentificat ca <B><?php echo $_SESSION['user'] ?></B>
-				</div>
+				Esti autentificat ca <B><?php echo $_SESSION['user'] ?></B>. <A href="logout.php">Iesire</A>
 				<?php 
-			}		 
+			} else {
 		?>
+</div>
 <div id="userdiv">
 </div>						
 <div id="logindiv" >
@@ -158,6 +160,7 @@ $search = $_POST['search'];
 <button id="login">Login</button>
 <button id="signin">Inregistrare</button>
 <button id="cancel">Inapoi</button>
+<?php  } ?>
 </td>
 <FORM action="search.php" method="POST">			
 					<td width="800" align="right">     <input type="text" class="tftextinput" name="search" size="15" maxlength="120"><input type="submit" value="Cauta" class="tfbutton">
@@ -177,7 +180,14 @@ $search = $_POST['search'];
      <li class=''><a href='orase.php'><span>Orase</span></a></li>
      <li class=''><a href='supermarketuri.php'><span>Supermarketuri</span></a></li>
      <li class=''><a href='produse.php'><span>Preturi</span></a></li>
+	<?php			
+			if (isset($_SESSION['user'])) {
+	?>
      <li class=''last><a href='contribuie.php'><span>Contribuie</span></a></li>
+	<?php 
+			}
+	?>    
+     
      </ul>
   </div> 
           
@@ -194,111 +204,3 @@ $search = $_POST['search'];
 					<tr>
 					
 					
-					<div id="modal" class="popupContainer" style="display:none;">
-	<header class="popupHeader">
-		<span class="header_title">Login</span>
-		<span class="modal_close"><i class="fa fa-times"></i></span>
-	</header>
-
-    <section class="popupBody">
-<div class="user_login">
-    <form>
-        <label>Email / Username</label> <input type="text"><br>
-        <label>Password</label> <input type="password"><br>
-
-        <div class="checkbox">
-            <input id="remember" type="checkbox"> <label for=
-            "remember">Remember me on this computer</label>
-        </div>
-
-        <div class="action_btns">
-            <div class="one_half">
-                <a class="btn back_btn" href="#">Back</a>
-            </div>
-
-            <div class="one_half last">
-                <a class="btn btn_red" href="#">Login</a>
-            </div>
-        </div>
-    </form>
-    
-    <a class="forgot_password" href="#">Forgot password?</a>
-</div>
-
-
-<div class="user_register">
-    <form>
-        <label>Full Name</label> <input type="text"><br>
-        <label>Email Address</label> <input type="email"><br>
-        <label>Password</label> <input type="password"><br>
-
-        <div class="checkbox">
-            <input id="send_updates" type="checkbox"> <label for=
-            "send_updates">Send me occasional email updates</label>
-        </div>
-
-        <div class="action_btns">
-            <div class="one_half">
-                <a class="btn back_btn" href="#">Back</a>
-            </div>
-
-            <div class="one_half last">
-                <a class="btn btn_red" href="#">Register</a>
-            </div>
-        </div>
-    </form>
-</div>    
-		<div class="social_login" style="display:none;">
-		
-		    <div class="centeredText">
-		        <span>Or use your Email address</span>
-		    </div>
-		
-		    <div class="action_btns">
-		        <div class="one_half">
-		            <a class="btn" href="#" id="login_form" name="login_form">Login</a>
-		        </div>
-		
-		        <div class="one_half last">
-		            <a class="btn" href="#" id="register_form" name=
-		            "register_form">Sign up</a>
-		        </div>
-		    </div>
-		</div>
-    </section>
-</div>
-
-
-
-
-
-<script>
-$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
-
-$(function () {
-    // Calling Login Form
-    $("#login_form").click(function () {
-        $(".social_login").hide();
-        $(".user_login").show();
-        return false;
-    });
-
-    // Calling Register Form
-    $("#register_form").click(function () {
-        $(".social_login").hide();
-        $(".user_register").show();
-        $(".header_title").text('Register');
-        return false;
-    });
-
-    // Going back to Social Forms
-    $(".back_btn").click(function () {
-        $(".user_login").hide();
-        $(".user_register").hide();
-        $(".social_login").show();
-        $(".header_title").text('Login');
-        return false;
-    });
-
-})
-</script>

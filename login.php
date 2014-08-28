@@ -17,7 +17,7 @@ if ($counter == 0)
 	echo ("ERROR: Wrong user or password!");
 } else {
 	$_SESSION['user']=$email;	
-	echo $email.$_SESSION['user'];
+	echo $email;
 }
 
 mysql_close($connection);
