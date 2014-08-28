@@ -17,11 +17,12 @@ $search = $_POST['search'];
 	require 'db.php';
 
 	if ($search != null) {	
-		$query = "SELECT p.pack_id packid, p.id pid, p.name pname, b.name bname, qty_um, um, c.name cname, s.city city, pri.value pval
-FROM product p, brand b, price pri, store s, commerciant c
+		$query = "SELECT p.pack_id packid, p.id pid, p.name pname, b.name bname, qty_um, um, c.name cname, ci.name city, pri.value pval
+FROM product p, brand b, price pri, store s, commerciant c, city ci
 WHERE p.brand_id = b.id
 AND pri.product_id = p.id
 AND pri.store_id = s.id
+AND ci.id=s.city_id
 and c.id = s.commerciant_id
 AND 
 		(lower(b.name) like ('%".strtolower($search)."%')
@@ -29,7 +30,7 @@ AND
 		or lower(c.name) like ('%".strtolower($search)."%')			
 		)
 GROUP BY p.id";
-	    $result = mysql_query($query) or die ("Could not execute query");
+	    $result = mysql_query($query) or die ("Could not execute query".$query);
 	
     
 	    while($row = mysql_fetch_array($result)) {
