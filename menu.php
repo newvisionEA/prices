@@ -18,17 +18,24 @@ $search = $_POST['search'];
 </script>
 
 <script>
-$(document).ready(function(){
-  $("#login").click(function(){
-    $("#logindiv").show(100);
-    $("#signindiv").hide(100);
-    $("#cancel").show(0);
-    $("#luser").focus();
-    $("#luser").select();
-});
+	$(document).ready(function(){
+	  $("#login").click(function(){
+	    $("#logindiv").show(100);
+	    $("#signindiv").hide(100);
+	    $("#oklogin").show(0);
+	    $("#signin").hide(0);
+	    $("#login").hide(0);
+	    $("#cancel").show(0);
+	    $("#luser").focus();
+	    $("#luser").select();
+	});
+		
   $("#signin").click(function(){
-	    $("#signindiv").show(100);
 	    $("#logindiv").hide(100);
+	    $("#signindiv").show(100);
+	    $("#oksignin").show(0);
+	    $("#signin").hide(0);
+	    $("#login").hide(0);
 	    $("#cancel").show(0);
 	    $("#suser").focus();
 	    $("#suser").select();
@@ -36,9 +43,53 @@ $(document).ready(function(){
   $("#cancel").click(function(){
 	    $("#logindiv").hide(100);
 	    $("#signindiv").hide(100);
+	    $("#oklogin").hide(0);
+	    $("#oksignin").hide(0);
 	    $("#cancel").hide(0);
-	  });
+	    $("#signin").show(0);
+	    $("#login").show(0);
 });
+
+	  $("#oksignin").click(function(){
+		  $.post( "signin.php", { email: $( "#suser" ).val(), pass: $( "#spass" ).val() })
+		  .done(function( data ) {
+			    $("#logindiv").hide(100);
+			    $("#signindiv").hide(100);
+			    $("#oksignin").hide(0);
+			    $("#cancel").hide(0);
+			    $("#userdiv").text(data);
+			    $("#userdiv").show(0);
+			    
+			    if (data.indexOf("ERROR") == 1) {
+				    $("#signin").show(0);
+				    $("#login").show(0);
+				    setTimeout( function(){
+					        $('#userdiv').fadeOut();			    	        
+					    }, 2000);
+				    }		    			    
+			});
+		});
+
+	  $("#oklogin").click(function(){
+		  $.post( "login.php", { email: $( "#luser" ).val(), pass: $( "#lpass" ).val() })
+		  .done(function( data ) {
+			    $("#logindiv").hide(100);
+			    $("#signindiv").hide(100);
+			    $("#oklogin").hide(0);
+			    $("#cancel").hide(0);
+			    $("#userdiv").text(data);
+			    $("#userdiv").show(0);
+			    
+			    if (data.indexOf("ERROR") == 1) {
+				    $("#signin").show(0);
+				    $("#login").show(0);
+				    setTimeout( function(){
+					        $('#userdiv').fadeOut();			    	        
+					    }, 2000);
+				    }		    			    
+			});
+		});		
+  });
 </script>
 
 </HEAD>
@@ -53,6 +104,17 @@ $(document).ready(function(){
 				<table BORDER="0">
 					<tr>		
 						<td width="200" align="left">
+		<?php			
+			if (isset($_SESSION['user'])) {
+			?>
+				<div id="autdiv">
+				Esti autentificat ca <B><?php echo $_SESSION['user'] ?></B>
+				</div>
+				<?php 
+			}		 
+		?>
+<div id="userdiv">
+</div>						
 <div id="logindiv" >
 <TABLE>
 <TR>
@@ -64,7 +126,7 @@ $(document).ready(function(){
 <TR>
 <TD>Parola
 </TD>
-<TD><INPUT type="password" name="pass"></INPUT>
+<TD><INPUT type="password" id="lpass"></INPUT>
 </TD>
 </TR>
 </TABLE>
@@ -80,17 +142,19 @@ $(document).ready(function(){
 <TR>
 <TD>Parola
 </TD>
-<TD><INPUT type="password" name="pass"></INPUT>
+<TD><INPUT type="password" id="spass"></INPUT>
 </TD>
 </TR>
 <TR>
 <TD>Confirma parola
 </TD>
-<TD><INPUT type="password" name="passconf"></INPUT>
+<TD><INPUT type="password" id="spassconf"></INPUT>
 </TD>
 </TR>
 </TABLE>
 </div>
+<button id="oklogin">OK</button>
+<button id="oksignin">OK</button>
 <button id="login">Login</button>
 <button id="signin">Inregistrare</button>
 <button id="cancel">Inapoi</button>
