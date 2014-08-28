@@ -88,7 +88,8 @@ $search = $_POST['search'];
 					        $('#userdiv').fadeOut();			    	        
 					    }, 2000);
 				    }	else {
-				    	$('#autdiv').html('Esti autentificat ca <B>'+data+'</B>. <A href="logout.php">Iesire</A>');
+				    	window.location.href = "index.php";					    
+				    	//$('#autdiv').html('Esti autentificat ca <B>'+data+'</B>. <A href="logout.php">Iesire</A>');
 				    }	    			    
 			});
 		});		
@@ -181,14 +182,7 @@ $search = $_POST['search'];
      <li class=''><a href='orase.php'><span>Orase</span></a></li>
      <li class=''><a href='supermarketuri.php'><span>Supermarketuri</span></a></li>
      <li class=''><a href='produse.php'><span>Preturi</span></a></li>
-	<?php			
-			if (isset($_SESSION['user'])) {
-	?>
-     <li class=''last><a href='contribuie.php'><span>Contribuie</span></a></li>
-	<?php 
-			}
-	?>    
-     
+     <li class=''last><a href='contribuie.php'><span>Contribuie</span></a></li>     
      </ul>
   </div> 
           
