@@ -17,6 +17,30 @@ $search = $_POST['search'];
 	treetable_callbacks['eventRowStateChanged'] = 'treetable_eventRowChanged';
 </script>
 
+<script>
+$(document).ready(function(){
+  $("#login").click(function(){
+    $("#logindiv").show(100);
+    $("#signindiv").hide(100);
+    $("#cancel").show(0);
+    $("#luser").focus();
+    $("#luser").select();
+});
+  $("#signin").click(function(){
+	    $("#signindiv").show(100);
+	    $("#logindiv").hide(100);
+	    $("#cancel").show(0);
+	    $("#suser").focus();
+	    $("#suser").select();
+});
+  $("#cancel").click(function(){
+	    $("#logindiv").hide(100);
+	    $("#signindiv").hide(100);
+	    $("#cancel").hide(0);
+	  });
+});
+</script>
+
 </HEAD>
 
 <BODY>
@@ -27,8 +51,52 @@ $search = $_POST['search'];
 				SRC="images/spacer.gif" WIDTH="4" HEIGHT="200" ALT="" /></TD>
 			<TD WIDTH="1000" HEIGHT="10" class="companyname2">
 				<table BORDER="0">
-					<tr><FORM action="search.php" method="POST">					
-						<td width="1000" align="right">     <input type="text" class="tftextinput" name="search" size="15" maxlength="120"><input type="submit" value="Cauta" class="tfbutton">
+					<tr>		
+						<td width="200" align="left">
+<div id="logindiv" >
+<TABLE>
+<TR>
+<TD>Email
+</TD>
+<TD><INPUT type="text" name="user" id="luser"></INPUT>
+</TD>
+</TR>
+<TR>
+<TD>Parola
+</TD>
+<TD><INPUT type="password" name="pass"></INPUT>
+</TD>
+</TR>
+</TABLE>
+</div>
+<div id="signindiv" >
+<TABLE>
+<TR>
+<TD>Email
+</TD>
+<TD><INPUT type="text" name="user" id="suser"></INPUT>
+</TD>
+</TR>
+<TR>
+<TD>Parola
+</TD>
+<TD><INPUT type="password" name="pass"></INPUT>
+</TD>
+</TR>
+<TR>
+<TD>Confirma parola
+</TD>
+<TD><INPUT type="password" name="passconf"></INPUT>
+</TD>
+</TR>
+</TABLE>
+</div>
+<button id="login">Login</button>
+<button id="signin">Inregistrare</button>
+<button id="cancel">Inapoi</button>
+</td>
+<FORM action="search.php" method="POST">			
+					<td width="800" align="right">     <input type="text" class="tftextinput" name="search" size="15" maxlength="120"><input type="submit" value="Cauta" class="tfbutton">
 						</td>
 						</FORM>
 					</tr>
@@ -45,8 +113,7 @@ $search = $_POST['search'];
      <li class=''><a href='orase.php'><span>Orase</span></a></li>
      <li class=''><a href='supermarketuri.php'><span>Supermarketuri</span></a></li>
      <li class=''><a href='produse.php'><span>Preturi</span></a></li>
-     <li class=''><a href='contribuie.php'><span>Contribuie</span></a></li>
-     <li class='last'><a id="modal_trigger"  href="#modal" class="">Login</a></li>
+     <li class=''last><a href='contribuie.php'><span>Contribuie</span></a></li>
      </ul>
   </div> 
           

@@ -593,3 +593,18 @@ img.gal:hover {
 
 
 
+/* login */
+#logindiv, #signindiv {
+  display:none;
+  border: 1px solid #AAAAAA;
+  background-color: #CCCCCC;
+}
+
+#cancel {
+  display:none;
+} 
+
+#logindiv table tr td input, #logindiv table tr td, #signindiv table tr td input, #signindiv table tr td {
+	height: 15px;
+	font-size: x-small;
+}
