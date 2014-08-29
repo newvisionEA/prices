@@ -10,7 +10,7 @@ $query = "insert into user (name, email, password) values('".$name."','".$email.
 
 if (!mysql_query($query, $connection))
 {
-	echo ("ERROR: User already exists!");
+	echo ("ERROR: User already exists!".$query);
 } else {
 	echo $email;
 }

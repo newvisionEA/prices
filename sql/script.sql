@@ -16,6 +16,15 @@ DROP DATABASE prices;
 CREATE DATABASE `prices` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `prices`;
 
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
 -- --------------------------------------------------------
 CREATE TABLE `city` (
   `id` int(11) NOT NULL auto_increment,
@@ -270,7 +279,7 @@ from vw_lastminprices lmp
 group by product_id, value);
 
 create or replace view vw_topstoresbyminprice as (
-select s.id, count(value) from vw_lastminprices2 lmp
+select s.id store_id, count(value) counter from vw_lastminprices2 lmp
 right join store s
 on s.id = lmp.store_id
 group by s.id );
