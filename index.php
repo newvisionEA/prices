@@ -24,12 +24,13 @@ group by s.id, ci.name, c.name, s.address, c.img
 order by counter desc';
 $result = mysql_query($query) or die ("Could not execute query".$query);
 
+$line = 1;
 while($row = mysql_fetch_array($result)) {
 	extract($row);
 	?>
 	<TR>
 		<TD>
-		<A href="preturiSupermarket2.php?sid=<?php echo $store_id ?>"><IMG src="images/<?php echo $cimg ?>" width = "50" title="<?php echo $cname ?>"/></A>&nbsp;
+		<?php echo $line++ ?>. <A href="preturiSupermarket2.php?sid=<?php echo $store_id ?>"><IMG src="images/<?php echo $cimg ?>" width = "50" title="<?php echo $cname ?>"/></A>&nbsp;
 		 <A href="preturiSupermarket2.php?sid=<?php echo $store_id ?>"><?php echo $cname ?> <?php echo $ciname ?> <?php echo $sadr ?></A>
 		</TD>
 		<TD>
