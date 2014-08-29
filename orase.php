@@ -7,6 +7,7 @@ session_start();
 <TITLE>Preturi supermarket - Orase</TITLE>
 
 <?php require 'menu.php'?>
+<BR/>
 						<td class="content">
 							<table id="table1" border="0">
 								<colgroup>

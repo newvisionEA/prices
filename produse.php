@@ -6,7 +6,7 @@
 <TITLE>Preturi supermarket - Preturi</TITLE>
 
 		<?php require 'menu.php'?>		 
-
+<BR/>
 						<td class="content">
 	<table id="table1" border="0">
 
