@@ -6,7 +6,7 @@
 
 <?php require 'menu.php'?>		 
   <td class="content">
-    <TABLE id="prod" border="0" cellpadding="2">
+    <TABLE id="table1"  border="0" cellpadding="3">
 
 <?php
 $id = $_GET ['id'];

@@ -4,7 +4,8 @@ session_start();
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <?php require 'menu.php'?>
-						<td >
+<BR/>
+						<td>
 						<table id="table1" border="0">
 							<colgroup>
 								<col width="400" />

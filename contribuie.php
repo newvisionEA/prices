@@ -5,7 +5,7 @@
 <TITLE>Preturi supermarket - Contribuie si tu</TITLE>
 
 <?php require 'menu.php'?>
-						<td class="content">
+						<td class="table1">
 
 							<form method="post" name="contact_form" action="addPriceHandler.php">
 	<?php			
@@ -70,7 +70,8 @@ echo $rssfeed;
 			} else {
 	?>
 	<BR/>    							
-	<div>Trebuie sa te autentifici pentru a contribui cu informatii la acest site. Daca nu ai deja cont dureaza doar 10 secunde sa-ti faci unul.</div>
+	<div>Trebuie sa te autentifici pentru a contribui cu informatii la acest site. <BR/>
+	Daca nu ai deja cont dureaza doar 10 secunde sa-ti faci unul.</div>
 	<?php 
 			} 
 	?>    							
