@@ -157,11 +157,11 @@ $search = $_POST['search'];
 </TR>
 </TABLE>
 </div>
-<button id="oklogin">OK</button>
-<button id="oksignin">OK</button>
-<button id="login">Login</button>
-<button id="signin">Inregistrare</button>
-<button id="cancel">Inapoi</button>
+<button class="loginbutton"  id="oklogin">OK</button>
+<button class="loginbutton"  id="oksignin">OK</button>
+<button class="loginbutton"  id="login">Login</button>
+<button class="loginbutton"  id="signin">Inregistrare</button>
+<button class="loginbutton"  id="cancel">Inapoi</button>
 <?php  } ?>
 </td>
 <FORM action="search.php" method="POST">			

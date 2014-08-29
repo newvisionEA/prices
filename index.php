@@ -13,7 +13,7 @@ session_start();
 							</colgroup>
 							<TR>
 							<TD colspan="2">
-							<H1>Cele mai mici preturi</H1>
+							<H1>Top cele mai mici preturi</H1>
 							</TD>
 							<?php
 require 'db.php';
