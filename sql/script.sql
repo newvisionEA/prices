@@ -268,3 +268,9 @@ create or replace view vw_lastminprices2 as
 (select min(store_id) store_id, product_id, value
 from vw_lastminprices lmp
 group by product_id, value);
+
+create or replace view vw_topstoresbyminprice as (
+select s.id, count(value) from vw_lastminprices2 lmp
+right join store s
+on s.id = lmp.store_id
+group by s.id );
