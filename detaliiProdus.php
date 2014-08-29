@@ -4,7 +4,8 @@
 <HEAD>
 <TITLE>Preturi supermarket - Detalii produs</TITLE>
 
-<?php require 'menu.php'?>		 
+<?php require 'menu.php'?>
+<BR/>	 
   <td class="content">
     <TABLE id="table1"  border="0" cellpadding="3">
 
@@ -87,4 +88,50 @@ while ( $row = mysql_fetch_array ( $result ) ) {
 
 echo $output;
 ?>
-</TABLE>
+							</TABLE>
+						<BR/>	
+    <TABLE id="table1"  border="0" cellpadding="3">
+    <TR>
+    <TD><B>
+    Istoric preturi</B>
+    </TD>
+    </TR>
+<?php 
+
+$query = "select *,  ci.name ciname from price_hist p, store s, commerciant c, city ci 
+where c.id=s.commerciant_id and p.store_id  = s.id and ci.id = s.city_id
+and product_id=".$pid."
+order by rdate desc";
+
+$result = mysql_query ( $query ) or die ( "Could not execute query ".$query );
+
+while ( $row = mysql_fetch_array ( $result ) ) {
+	extract ( $row );
+	?>
+	<TR>
+	<TD>
+	<A href="preturiSupermarket2.php?sid=<?php echo $store_id ?>" ><IMG src="images/<?php echo $img ?>" width="50"/></A> 
+	<A href="preturiSupermarket2.php?sid=<?php echo $store_id ?>" ><?php echo $ciname ?> <?php echo $address ?></A>
+	</TD>
+	<TD>
+	<B><?php echo number_format(floor($value), 0, '.', '') ?></B><SUP><?php echo substr(number_format($value - floor($value), 2, '', ''), 1)?></SUP>
+	</TD>
+	<TD>
+	<?php echo date('d.m.Y H:i', strtotime($rdate)) ?> 
+	</TD>
+	</TR>
+	<?php 	
+}
+?>    
+	</TABLE>							
+						</td>
+					</tr>
+				</table>
+			</TD>
+			<TD WIDTH="1" HEIGHT="92"><IMG SRC="images/spacer.gif" WIDTH="1"
+				HEIGHT="92" ALT="" /></TD>
+		</TR>
+	</TABLE>
+</BODY>
+</HTML>
+
