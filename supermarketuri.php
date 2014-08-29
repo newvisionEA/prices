@@ -30,7 +30,7 @@ foreach ($commerciants as $commerciant) {
 								<tr id="table1_<?php echo $commerciant_index ?>">
 									<td>
 										<img src="images/folder_green_open.png" class="button" alt="" width="16" height="16" />
-										<a href="#" onclick="treetable_toggleRow('table1_<?php echo $commerciant_index ?>');">
+										<B><a href="#" onclick="treetable_toggleRow('table1_<?php echo $commerciant_index ?>');"></B>
 										<IMG src="images/<?php echo $commerciant['img']; ?>" width = "50" title="<?php print(htmlspecialchars($commerciant['name'])); ?>"/>
 										</a>
 									</td>
@@ -57,9 +57,9 @@ foreach ($commerciants as $commerciant) {
 								<tr id="table1_<?php echo $commerciant_index ?>_<?php echo $city_index ?>">
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;
 										<img src="images/folder_green_open.png" class="button" alt="" width="16" height="16" />
-										<a href="#" onclick="treetable_toggleRow('table1_<?php echo $commerciant_index?>_<?php echo $city_index ?>');">
+										<B><a href="#" onclick="treetable_toggleRow('table1_<?php echo $commerciant_index?>_<?php echo $city_index ?>');">
 										<?php echo $city['ciname'] ?>
-										</a>
+										</a></B>
 									</td>
 									<td></td>
 									<td></td>

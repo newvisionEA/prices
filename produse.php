@@ -53,8 +53,8 @@ function print_tree2($tree, $prefix, $spaces) {
 		foreach ( $tree as $node ) {
 			?>
 		<tr id="table1<?php echo $prefix?>_<?php echo $index ?>">
-			<td><?php echo $spaces ?><img src="images/folder_green_open.png" class="button" alt="" width="16" height="16" /><a href="#"
-				onclick="treetable_toggleRow('table1<?php echo $prefix?>_<?php echo $index ?>');"><?php print(htmlspecialchars($node['category']['name'])); ?></a></td>
+			<td><?php echo $spaces ?><img src="images/folder_green_open.png" class="button" alt="" width="16" height="16" /><B><a href="#"
+				onclick="treetable_toggleRow('table1<?php echo $prefix?>_<?php echo $index ?>');"><?php print(htmlspecialchars($node['category']['name'])); ?></a></B></td>
 			<td></td>
 			<td></td>
 		</tr>

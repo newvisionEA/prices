@@ -177,6 +177,8 @@ body {
 	text-align: center;
 	margin-top: 0px;
 	background-color: #EEEEEE;
+	font-family: 'Open Sans', sans-serif;
+	
 }
 /*
 //=============================
@@ -252,7 +254,7 @@ body {
 
 #prod a:hover {
 	text-align: left;
-	color: #E3007A;
+	color: #00b0e3;
 	font-size: small;
 	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
