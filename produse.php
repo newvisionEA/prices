@@ -8,16 +8,12 @@
 		<?php require 'menu.php'?>		 
 <BR/>
 						<td class="content">
-	<table id="table1" border="0">
 
+<table id="table1" border="0">
 		<colgroup>
-
 			<col width="400" />
-
 			<col width="0*" />
-
 			<col width="0*" />
-			
 		</colgroup>
 
 <?php
