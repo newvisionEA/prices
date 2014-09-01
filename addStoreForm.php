@@ -26,15 +26,29 @@ while($row = mysql_fetch_array($result)) {
 }
 $rssfeed .= '</select>';
 
-mysql_close($connection);
+
 echo $rssfeed;
 ?>
 
 	 
     <BR/>Oras:
-    <input type="text" name="oras" size="20"/>
+    <?php 
+    $query = "select * from city";
+    $result = mysql_query($query) or die ("Could not execute query");
+    $rssfeed = '<select name="oras">';
+    while($row = mysql_fetch_array($result)) {
+    	extract($row);
     
-    <BR/>Adresa:
+    	$rssfeed .= '<option value="'.$id.'">'.$name;
+    	$rssfeed .= '</option>';
+    }
+    $rssfeed .= '</select>';
+    
+    
+    echo $rssfeed;
+    mysql_close($connection);
+    ?>
+    <BR/>Adresa: 
     <input type="text" name="adresa" size="20"/>
      
      <BR/>

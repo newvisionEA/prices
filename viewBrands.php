@@ -1,5 +1,5 @@
 <?php 
-require 'menu.php';
+require 'admin.php';
 
 ?>
 
@@ -26,5 +26,5 @@ require 'menu.php';
 </TABLE>
 <BR/>
 <?php 
-require 'menu.php';
+require 'admin.php';
 ?>

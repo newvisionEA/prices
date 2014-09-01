@@ -33,8 +33,8 @@ while($row = mysql_fetch_array($result)) {
 	?>
 	<TR>
 		<TD>
-		<?php echo $line++ ?>. <A href="preturiSupermarket2.php?sid=<?php echo $store_id ?>"><IMG src="images/<?php echo $cimg ?>" width = "50" title="<?php echo $cname ?>"/></A>&nbsp;
-		 <A href="preturiSupermarket2.php?sid=<?php echo $store_id ?>"><?php echo $cname ?> <?php echo $ciname ?> <?php echo $sadr ?></A>
+		<?php echo $line++ ?>. <A href="mob_preturiSupermarket2.php?sid=<?php echo $store_id ?>"><IMG src="images/<?php echo $cimg ?>" width = "50" title="<?php echo $cname ?>"/></A>&nbsp;
+		 <A href="mob_preturiSupermarket2.php?sid=<?php echo $store_id ?>"><?php echo $cname ?> <?php echo $ciname ?> <?php echo $sadr ?></A>
 		</TD>
 		<TD>
 		<?php echo $counter ?> preturi minime.

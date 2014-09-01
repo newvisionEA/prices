@@ -7,7 +7,7 @@ action="addCategoryHandler.php">
     <?php
 require 'db.php';
 
-$query = "select * from category where parent_id = 0";
+$query = "select * from category ";
 
 $result = mysql_query($query) or die ("Could not execute query");
 

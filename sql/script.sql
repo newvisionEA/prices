@@ -19,8 +19,8 @@ USE `prices`;
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL auto_increment,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL ,
+  `email` varchar(50) NOT NULL unique,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
@@ -144,8 +144,11 @@ CREATE TABLE `conversions` (
 
 INSERT INTO `conversions` (`from_um`, `to_um`, `factor`) VALUES
 ('g', 'kg', 1000),
+('kg', 'kg', 1),
 ('buc', 'buc', 1),
-('l', 'l', 1);
+('l', 'l', 1),
+('ml', 'l', 1000)
+;
 
 -- --------------------------------------------------------
 
@@ -169,7 +172,7 @@ CREATE TABLE `price_hist` (
 --
 -- Salvarea datelor din tabel `price`
 --
-
+/*
 INSERT INTO `price` (`product_id`, `rdate`, `value`, `store_id`) VALUES
 (1, '2013-09-09 13:45:00', 2.45, 12),
 (1, '2013-09-09 13:45:00', 2.75, 5),
@@ -194,7 +197,7 @@ INSERT INTO `price_hist` (`product_id`, `rdate`, `value`, `store_id`) VALUES
 (7, '2013-09-21 21:00:00', 4.69, 5),
 (5, '2013-09-22 21:00:00', 5.93, 8),
 (7, '2013-09-22 21:00:00', 4.69, 8);
-
+*/
 -- --------------------------------------------------------
 
 --
@@ -224,7 +227,7 @@ INSERT INTO `product` (`id`, `brand_id`, `name`, `um`, `refum`, `qty_um`, `pack_
 (2, 2, 'Apa plata', 'L', 'L', 0.5, 0, NULL, 2, 30),
 (4, 3, 'Iaurt natural 3% grasime', 'g', 'kg', 140, 0, NULL, 7, 30),
 (5, 3, 'Iaurt natural 3% grasime 6+2', 'buc', 'buc', 8, 4, NULL, 7, 4),
-(6, 4, 'Fitness Fruit', 'g', 'kg', 350, 0, NULL, 8, 3),
+(6, 4, 'Cereale Fitness Fruit', 'g', 'kg', 350, 0, NULL, 8, 3),
 (7, 3, 'Lapte 3.5% grasime', 'l', 'l', 1, 0, NULL, 7, 15);
 
 -- --------------------------------------------------------

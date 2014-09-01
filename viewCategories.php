@@ -1,5 +1,5 @@
 <?php 
-require 'menu.php';
+require 'admin.php';
 
 ?>
 
@@ -10,8 +10,7 @@ require 'menu.php';
 	 	
 		$query = "select * from category where parent_id=0";
 	    $result = mysql_query($query) or die ("Could not execute query");
-	
-    
+	    
 	    while($row = mysql_fetch_array($result)) {
 	        extract($row);
 	
@@ -37,5 +36,5 @@ require 'menu.php';
 </TABLE>
 <BR/>
 <?php 
-require 'menu.php';
+require 'admin.php';
 ?>

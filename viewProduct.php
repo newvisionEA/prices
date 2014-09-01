@@ -24,7 +24,7 @@
 				SRC="images/spacer.gif" WIDTH="4" HEIGHT="5" ALT="" /></TD>
 		</TR>
 		<TR>
-		<?php require 'menu.php'?>		 
+		<?php require 'admin.php'?>		 
 		</TR>
 		<TR>
 			<TD WIDTH="1000" HEIGHT="6" colspan="1"><IMG

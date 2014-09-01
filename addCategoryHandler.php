@@ -21,5 +21,5 @@ mysql_close($connection);
 
 <BR/>
 <?php 
-require 'menu.php';
+require 'admin.php';
 ?>

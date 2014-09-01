@@ -13,11 +13,7 @@ session_start();
 </HEAD>
 <BODY>
 							<table id="table1" border="0">
-								<colgroup>
-									<col width="300" />
-									<col width="100" />
-									<col width="0*" />
-								</colgroup>
+
 <?php
 require 'db.php';
 
@@ -75,7 +71,7 @@ foreach ($cities as $city) {
 ?>
 								<tr id="table1_<?php echo $city_index ?>_<?php echo $store_index ?>_<?php echo $sub_store_index ?>">
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<a href="preturiSupermarket2.php?sid=<?php echo $store['sid']?>" onclick="treetable_toggleRow('table1_<?php echo $city_index?>_<?php echo $store_index ?>_<?php echo $sub_store_index ?>');">
+										<a href="mob_preturiSupermarket2.php?sid=<?php echo $store['sid']?>" onclick="treetable_toggleRow('table1_<?php echo $city_index?>_<?php echo $store_index ?>_<?php echo $sub_store_index ?>');">
 										  Preturi <?php echo $store['cname'].' '.$store['address']?>
 										</a>
 									</td>

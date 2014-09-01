@@ -1,4 +1,5 @@
-<?php
+<?php 
+session_start(); 
 
 $name = "noname";
 $email = $_POST['email'];

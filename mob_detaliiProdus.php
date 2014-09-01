@@ -2,16 +2,18 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<TITLE>Preturi supermarket - Detalii produs</TITLE>
+<link href="css/mobile.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<script type='text/javascript' src='js/jquery.min.js'></script>
+<script type='text/javascript' src='js/menu_jquery.js'></script>
+<script type="text/javascript" src="js/treetable.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</HEAD>
 
-<?php require 'menu.php'?>
-<BR/>	 
-  <td class="content">
     <TABLE id="table1"  border="0" cellpadding="3">
 
 <?php
 $id = $_GET ['id'];
-$local_pid = $id;
 
 require 'db.php';
 
@@ -44,7 +46,7 @@ while ( $row = mysql_fetch_array ( $result ) ) {
 	extract ( $row );
 	
 	if ($rowindex == 0) {
-		$output .= '<tr><td colspan="5"><B><A href="detaliiProdus.php?id='.$pid.'"> '.$pname.' '.$bname.' '.$qty_um.' '.$um.'</A></B></td></tr>';
+		$output .= '<tr><td colspan="5"><B><A href="mob_detaliiProdus.php?id='.$pid.'"> '.$pname.' '.$bname.' '.$qty_um.' '.$um.'</A></B></td></tr>';
 		$rowindex ++;
 	}
 	
@@ -79,7 +81,7 @@ while ( $row = mysql_fetch_array ( $result ) ) {
 	if ($pval > $pmin) {
 		$temp = ($pval - $pmin) * $pms;
 		$output .= '<td>cu '.number_format ( ($pval / $pmin * 100 - 100), 2, '.', '' ).'% mai scump</td>';
-		$output .= '<td>platesti cu '.number_format ( floor ( $temp ), 0, '.', '' ).'</B><SUP>'.substr ( number_format ( $temp - floor ( $temp ), 2, '', '' ), 1 ).'</SUP>'.' Lei mai mult pe luna</td>';
+		//$output .= '<td>platesti cu '.number_format ( floor ( $temp ), 0, '.', '' ).'</B><SUP>'.substr ( number_format ( $temp - floor ( $temp ), 2, '', '' ), 1 ).'</SUP>'.' Lei mai mult pe luna</td>';
 	} else {
 		$output .= '<td><IMG src="images/lightbulb.png" height = "20" width = "20" title="Cel mai bun pret"/>Cel mai bun pret !</td>';
 	}
@@ -101,7 +103,7 @@ echo $output;
 
 $query = "select *,  ci.name ciname from price_hist p, store s, commerciant c, city ci 
 where c.id=s.commerciant_id and p.store_id  = s.id and ci.id = s.city_id
-and product_id=".$local_pid."
+and product_id=".$pid."
 order by rdate desc";
 
 $result = mysql_query ( $query ) or die ( "Could not execute query ".$query );
@@ -111,8 +113,8 @@ while ( $row = mysql_fetch_array ( $result ) ) {
 	?>
 	<TR>
 	<TD>
-	<A href="preturiSupermarket2.php?sid=<?php echo $store_id ?>" ><IMG src="images/<?php echo $img ?>" width="50"/></A> 
-	<A href="preturiSupermarket2.php?sid=<?php echo $store_id ?>" ><?php echo $ciname ?> <?php echo $address ?></A>
+	<A href="mob_preturiSupermarket2.php?sid=<?php echo $store_id ?>" ><IMG src="images/<?php echo $img ?>" width="50"/></A> 
+	<A href="mob_preturiSupermarket2.php?sid=<?php echo $store_id ?>" ><?php echo $ciname ?> <?php echo $address ?></A>
 	</TD>
 	<TD>
 	<B><?php echo number_format(floor($value), 0, '.', '') ?></B><SUP><?php echo substr(number_format($value - floor($value), 2, '', ''), 1)?></SUP>
@@ -124,15 +126,10 @@ while ( $row = mysql_fetch_array ( $result ) ) {
 	<?php 	
 }
 ?>    
-	</TABLE>							
-						</td>
-					</tr>
-				</table>
-			</TD>
-			<TD WIDTH="1" HEIGHT="92"><IMG SRC="images/spacer.gif" WIDTH="1"
-				HEIGHT="92" ALT="" /></TD>
-		</TR>
 	</TABLE>
+	<?php
+	require 'mob_menu.php'; 
+	?>							
 </BODY>
 </HTML>
 

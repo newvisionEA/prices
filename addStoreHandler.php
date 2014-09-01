@@ -6,8 +6,8 @@ $adresa = $_POST['adresa'];
 
 require 'db.php';
 
-$query = "insert into store (commerciant_id, city, address)
-		values(".$comerciant.", '".$oras."', '".$adresa."')";
+$query = "insert into store (commerciant_id, city_id, address)
+		values(".$comerciant.", ".$oras.", '".$adresa."')";
 //echo $query;
 if (!mysql_query($query, $connection))
 {
@@ -20,5 +20,5 @@ mysql_close($connection);
 
 <BR/>
 <?php 
-require 'menu.php';
+require 'admin.php';
 ?>

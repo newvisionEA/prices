@@ -2,7 +2,8 @@
 
 
 ?>
-	<TABLE width="100%" cellspacing="0"> 
+<HR/>
+	<TABLE width="100%" cellspacing="0" id="tablemenu"> 
 
 		<TR>
 			<TD><A href="mob_topuri.php">Topuri</A></TD>
@@ -20,7 +21,7 @@
 			<TD><A href="mob_contribuie.php">Contribuie</A></TD>
 		</TR>
 		<TR>
-			<TD><A href="mob_members.php">Membri</A></TD>
+			<TD><A href="mob_membri.php">Membri</A></TD>
 		</TR>
 	
 		</TABLE>		

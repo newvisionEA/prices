@@ -2,7 +2,7 @@ body {
 	font-family: 'Open Sans', sans-serif;	
 }
 
-table tr td {
+#tablemenu table tr td {
 	border: 1px solid black;
 	font-size: small;
 }
