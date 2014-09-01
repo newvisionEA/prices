@@ -107,7 +107,7 @@ $search = $_POST['search'];
 			<TD WIDTH="1000" HEIGHT="10" class="companyname2">
 				<table BORDER="0">
 					<tr>		
-						<td width="200" align="left">
+						<td width="300" align="left">
 				<div id="autdiv">
 						<?php			
 			if (isset($_SESSION['user'])) {
@@ -165,7 +165,7 @@ $search = $_POST['search'];
 <?php  } ?>
 </td>
 <FORM action="search.php" method="POST">			
-					<td width="800" align="right">     <input type="text" class="tftextinput" name="search" size="15" maxlength="120"><input type="submit" value="Cauta" class="tfbutton">
+					<td width="700" align="right">     <input type="text" class="tftextinput" name="search" size="15" maxlength="120"><input type="submit" value="Cauta" class="tfbutton">
 						</td>
 						</FORM>
 					</tr>
@@ -183,7 +183,15 @@ $search = $_POST['search'];
      <li class=''><a href='orase.php'><span>Orase</span></a></li>
      <li class=''><a href='supermarketuri.php'><span>Supermarketuri</span></a></li>
      <li class=''><a href='produse.php'><span>Preturi</span></a></li>
-     <li class=''last><a href='contribuie.php'><span>Contribuie</span></a></li>     
+     <li class=''last><a href='contribuie.php'><span>Contribuie</span></a></li>
+     <?php 
+		if (isset($_SESSION['user']) && $_SESSION['user']=="rveina2@gmail.com") {
+	?>
+     <li class=''last><a href='admin.php'><span>Admin</span></a></li>
+ <?php
+		}  
+?>
+          
      </ul>
   </div> 
           

@@ -40,7 +40,7 @@ require 'db.php';
 $query = "select s.id sid, c.name cname, ci.name city, address 
 		from store s, commerciant c, city ci  
 		where ci.id = s.city_id 
-		and s.commerciant_id = c.id";
+		and s.commerciant_id = c.id order by cname, city";
 
 $result = mysql_query($query) or die ("Could not execute query " .$query);
 
