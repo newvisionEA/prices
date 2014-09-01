@@ -1,0 +1,42 @@
+body {
+	font-family: 'Open Sans', sans-serif;	
+}
+
+table tr td {
+	border: 1px solid black;
+	font-size: small;
+}
+
+#table1 a:link {
+	color: #0F467F;
+	text-decoration: underline;
+	font-size: small;
+}
+
+#table1 a:visited {
+	color: #0F467F;
+	text-decoration: underline;
+	font-size: small;
+}
+
+#table1 a:hover {
+	color: #6699cc;
+	text-decoration: underline;
+	font-size: small;
+}
+
+#table1 a:active {
+	color: #6699cc;
+	text-decoration: underline;
+	font-size: small;
+}
+
+#table1 td {
+	font-size: smaller;
+	border: 0px;
+}
+
+
+h1 {
+	font-size: smaller;
+}
