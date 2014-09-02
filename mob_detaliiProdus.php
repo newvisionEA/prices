@@ -9,7 +9,8 @@
 <script type="text/javascript" src="js/treetable.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 </HEAD>
-
+<BODY>
+<?php include_once("analyticstracking.php") ?>
     <TABLE id="table1"  border="0" cellpadding="3">
 
 <?php

@@ -10,6 +10,7 @@
 <script type="text/javascript" src="js/script.js"></script>
 </HEAD>
 <BODY>
+<?php include_once("analyticstracking.php") ?>
 						<td class="table1">
 
 							<form method="post" name="contact_form" action="addPriceHandler.php">

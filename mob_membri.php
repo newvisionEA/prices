@@ -12,6 +12,7 @@ session_start();
 <script type="text/javascript" src="js/script.js"></script>
 </HEAD>
 <BODY>
+<?php include_once("analyticstracking.php") ?>
 <table>
 <tr>
 <td id="table1">

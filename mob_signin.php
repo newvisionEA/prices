@@ -22,7 +22,7 @@ if (!$result)
 <script type="text/javascript" src="js/script.js"></script>
 </HEAD>
 <body>
-
+<?php include_once("analyticstracking.php") ?>
 <table id="table1" border="0">
 <TR>
 	<TD>	

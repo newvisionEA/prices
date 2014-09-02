@@ -9,6 +9,7 @@
 <script type="text/javascript" src="js/script.js"></script>
 </HEAD>
 <BODY>
+<?php include_once("analyticstracking.php") ?>
 <?php
 require 'mob_menu.php';
 ?>

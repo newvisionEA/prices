@@ -99,6 +99,7 @@ $search = $_POST['search'];
 </HEAD>
 
 <BODY>
+<?php include_once("analyticstracking.php") ?>
 	<TABLE WIDTH="1010" BORDER="0" align="center" CELLPADDING="0"
 		CELLSPACING="0" ID="Table_01">
 		<TR>
