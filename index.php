@@ -78,7 +78,7 @@ $isBot =  $ip == '66.249.65.39'
 		|| strpos($ua, 'nokia6230i/. fast crawler') !== false;
 
 if ($isMobile) {
-	header('Location: http://m.preturisupermarket.ro');
+	header('Location: http://m.preturisupermarket.ro/mob_index.php');
 	exit();
 }
 session_start();
