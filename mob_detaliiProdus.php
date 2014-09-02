@@ -21,7 +21,7 @@ require 'db.php';
 $query = "
 		SELECT 
 			p.pack_id packid, p.id pid, p.name pname, b.name bname, qty_um, um, c.name cname, 
-			c.img cimg, ci.name city, s.address adr, pri.value pval, p.month_stock pms, 
+			c.img cimg, ci.name city, s.address adr, pri.value pval, p.month_stock pms, pri.rdate rdate, 
 			( 
 				SELECT MIN( value ) 
 				FROM price 
@@ -86,7 +86,7 @@ while ( $row = mysql_fetch_array ( $result ) ) {
 	} else {
 		$output .= '<td><IMG src="images/lightbulb.png" height = "20" width = "20" title="Cel mai bun pret"/>Cel mai bun pret !</td>';
 	}
-	
+	$output .= "<td class='greytext'>(la ".date('d.m.Y H:i', strtotime($rdate)).")</td>";
 	$output .= '</tr>';
 }
 

@@ -83,7 +83,7 @@ function print_tree2($tree, $prefix, $spaces, $sid, $comimg) {
 <?php
 
 $query = "
-select *, p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value price, lmp.value minprice, s2.id minstore_id, c2.img minstore_img, c2.name minstore_name
+select *, p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value price, lmp.value minprice, s2.id minstore_id, c2.img minstore_img, c2.name minstore_name, pri.lastdate rdate
 from vw_lastprices pri, store s, product p, brand b, vw_lastminprices2 lmp, store s2, commerciant c2
 where s.id=".$sid." 
 and pri.store_id = s.id 
@@ -123,6 +123,7 @@ and s2.commerciant_id = c2.id
 				  } 
 				?>				
 				</td>
+				<td class='greytext'>(la <?php echo date('d.m.Y H:i', strtotime($rdate)) ?>)</td>
 			</tr>
 	<?php
 				$indexCat++;

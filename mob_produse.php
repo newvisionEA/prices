@@ -54,7 +54,7 @@ function print_tree2($tree, $prefix, $spaces) {
 			<td></td>
 		</tr>
 <?php
-			$query = "select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val,
+			$query = "select p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value val, pri.rdate rdate, 
 			(
 			SELECT MIN( value )
 			FROM price
@@ -87,6 +87,7 @@ function print_tree2($tree, $prefix, $spaces) {
 			
 			
 			</td>
+			<td class='greytext'>(la <?php echo date('d.m.Y H:i', strtotime($rdate)) ?>)</td>
 			</tr>
 	<?php
 				$indexCat++;
