@@ -32,7 +32,7 @@ echo $rssfeed;
     <?php
 require 'db.php';
 
-$query = "select s.id sid, c.name cname, city, address from store s, commerciant c where s.commerciant_id = c.id"	  ;
+$query = "select s.id sid, c.name cname, ci.name city, address from store s, commerciant c, city ci where ci.id=s.city_id and s.commerciant_id = c.id"	  ;
 
 $result = mysql_query($query) or die ("Could not execute query");
 
