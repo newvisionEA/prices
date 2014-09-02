@@ -23,5 +23,11 @@
 		<TR>
 			<TD><A href="mob_membri.php">Membri</A></TD>
 		</TR>
-	
+     <?php 
+		if (isset($_SESSION['user']) && $_SESSION['user']=="rveina2@gmail.com") {
+	?>
+	<TR>
+			<TD><A href="admin.php">Admin</A></TD>
+		</TR>
+	<?php } ?>	
 		</TABLE>		
