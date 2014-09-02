@@ -7,7 +7,7 @@ action="addProductHandler.php">
     <?php
 require 'db.php';
 
-$query = "select * from category where parent_id != 0";
+$query = "select * from category order by name";
 
 $result = mysql_query($query) or die ("Could not execute query");
 
@@ -31,7 +31,7 @@ echo $rssfeed;
     <?php
 require 'db.php';
 
-$query = "select * from brand";
+$query = "select * from brand order by name";
 
 $result = mysql_query($query) or die ("Could not execute query");
 
