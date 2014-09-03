@@ -61,6 +61,9 @@ echo $rssfeed;
     
     <BR/>Qty UM:
     <input type="text" name="qtyum" size="20"/>
+
+        <BR/>Month stock:
+    <input type="text" name="month" size="20"/>
     
 	     <BR/>Pack id:
     

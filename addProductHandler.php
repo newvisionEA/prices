@@ -12,12 +12,13 @@ $um = $_POST['um'];
 $refum = $_POST['refum'];
 $qtyum = $_POST['qtyum'];
 $packid = $_POST['packid'];
+$month_stock= $_POST['month'];
 
 
 require 'db.php';
 
-$query = "insert into product (brand_id, category_id, name, um, refum, qty_um, pack_id)
-		values(".$brand.", ".$category.", '".$name."','".$um."','".$refum."',".$qtyum.", ".$packid.")";
+$query = "insert into product (brand_id, category_id, name, um, refum, qty_um, pack_id, month_stock)
+		values(".$brand.", ".$category.", '".$name."','".$um."','".$refum."',".$qtyum.", ".$packid.", ".$month_stock.")";
 echo $query;
 if (!mysql_query($query, $connection))
 {
