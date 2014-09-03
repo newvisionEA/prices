@@ -13,7 +13,7 @@
 $id = $_GET ['id'];
 $local_pid = $id;
 
-require 'db.php';
+require 'dbi.php';
 
 $query = "
 		SELECT 
@@ -22,7 +22,7 @@ $query = "
 			( 
 				SELECT MIN( value ) 
 				FROM price 
-				WHERE product_id =".$id." ) pmin, 
+				WHERE product_id =? ) pmin, 
 			conv.factor factor, refum	
 		FROM 
 			product p, brand b, price pri, store s, commerciant c, conversions conv, city ci
@@ -33,14 +33,17 @@ $query = "
 			AND c.id = s.commerciant_id 
 			AND lower(conv.from_um) = lower(p.um) 
 			AND lower(conv.to_um) = lower(p.refum) 
-			AND p.id=".$id." order by pval
+			AND p.id=? order by pval
 ";
-
-$result = mysql_query ( $query ) or die ( "Could not execute query ".$query );
+$dbh = getDBH();
+$stmt = $dbh->prepare($query);
+$stmt->bind_param('ii', $id, $id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $rowindex = 0;
 
-while ( $row = mysql_fetch_array ( $result ) ) {
+while ( $row = $result->fetch_assoc() ) {
 	extract ( $row );
 	
 	if ($rowindex == 0) {
@@ -64,12 +67,14 @@ while ( $row = mysql_fetch_array ( $result ) ) {
 		$queryPack = "
 				select conv.factor factor2, qty_um qty_um_pack, um umpack, refum 
 				FROM product p, conversions conv 
-				WHERE id=".$packid.'
+				WHERE id=?
 				AND conv.from_um = p.um
-				AND conv.to_um = p.refum';
-		
-		$resultPack = mysql_query ( $queryPack ) or die ( "Could not execute query" );
-		$rowPack = mysql_fetch_array ( $resultPack );
+				AND conv.to_um = p.refum";
+		$stmt2 = $dbh->prepare($queryPack);
+		$stmt2->bind_param('i', $packid);
+		$stmt2->execute();
+		$resultPack = $stmt2->get_result();		
+		$rowPack = $resultPack->fetch_assoc();
 		extract ( $rowPack );
 		$output .= '<td>'.number_format ( $pval / ($qty_um_pack * $qty_um / $factor2), 2, '.', '' ).'RON/'.$refum.'</td>';
 	}
@@ -102,12 +107,15 @@ echo $output;
 
 $query = "select *,  ci.name ciname from price_hist p, store s, commerciant c, city ci 
 where c.id=s.commerciant_id and p.store_id  = s.id and ci.id = s.city_id
-and product_id=".$local_pid."
+and product_id=?
 order by rdate desc";
 
-$result = mysql_query ( $query ) or die ( "Could not execute query ".$query );
+$stmt = $dbh->prepare($query);
+$stmt->bind_param('i', $local_pid);
+$stmt->execute();
+$result = $stmt->get_result();
 
-while ( $row = mysql_fetch_array ( $result ) ) {
+while ( $row = $result->fetch_assoc() ) {
 	extract ( $row );
 	?>
 	<TR>
@@ -124,6 +132,8 @@ while ( $row = mysql_fetch_array ( $result ) ) {
 	</TR>
 	<?php 	
 }
+
+$dbh->close();
 ?>    
 	</TABLE>							
 						</td>
