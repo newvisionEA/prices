@@ -5,11 +5,14 @@ $name = "noname";
 $email = $_POST['email'];
 $pass = $_POST['pass'];
 
-require 'db.php';
+require 'dbi.php';
 
-$query = "select count(*) counter from user where email = '".$email."' and password = '".$pass."'";
-$result = mysql_query ( $query ) or die ( "Could not execute query ".$query );
-$row = mysql_fetch_array ( $result );
+$dbh = getDBH();
+$stmt = $dbh->prepare('select count(*) counter from user where email = ? and password = ?');
+$stmt->bind_param('ss', $email, $pass);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
 extract ( $row );
 
 if ($counter == 0)
@@ -20,7 +23,7 @@ if ($counter == 0)
 	echo $email;
 }
 
-mysql_close($connection);
+$dbh->close();
 
 
 

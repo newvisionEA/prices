@@ -10,9 +10,7 @@ $search = $_POST['search'];
 <script type="text/javascript" src="js/script.js"></script>
 <link rel="shortcut icon" href="http://www.preturisupermarket.ro/favicon.ico" />
 
-<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
-<link type="text/css" rel="stylesheet" href="css/popupstyle.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
 <script type="text/javascript">
