@@ -10,19 +10,26 @@
 		</colgroup>
 
 <?php
-require 'db.php';
+require 'dbi.php';
 
 $sid = isset ( $_GET ['sid'] ) ? $_GET ['sid'] : null;
+$dbh=getDBH();
 
 if ($sid != null) {
-	$query = "select c.name cname, c.id cid, ci.name scity, s.address saddress from commerciant c, store s, city ci where ci.id=s.city_id and c.id=s.commerciant_id and s.id = " . $sid;
-	$result = mysql_query ( $query ) or die ( "Could not execute query".$query );
-	$row = mysql_fetch_array ( $result );
+	$query = "select c.name cname, c.id cid, ci.name scity, s.address saddress from commerciant c, store s, city ci where ci.id=s.city_id and c.id=s.commerciant_id and s.id = ?";
+	$stmt = $dbh->prepare($query);
+	$stmt->bind_param('i', $sid);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$row = $result->fetch_assoc();
 	extract ( $row );
 
-	$query = "select c.img, c.name cname, c.id cid from commerciant c, store s where c.id=s.commerciant_id and s.id = " . $sid;
-	$result = mysql_query ( $query ) or die ( "Could not execute query".$query );
-	$row = mysql_fetch_array ( $result );
+	$query = "select c.img, c.name cname, c.id cid from commerciant c, store s where c.id=s.commerciant_id and s.id = ?";
+	$stmt = $dbh->prepare($query);
+	$stmt->bind_param('i', $sid);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$row = $result->fetch_assoc();
 	extract ( $row );
 
 	$comname = $cname;
@@ -43,9 +50,11 @@ if ($sid != null) {
 <?php 
 // Fetch all categories
 $query = "select * from category";
-$result = mysql_query ( $query ) or die ( "Could not execute query ".$query );
+$stmt = $dbh->prepare($query);
+$stmt->execute();
+$result = $stmt->get_result();
 $roles = array ();
-while ( $role = mysql_fetch_assoc ( $result ) ) {
+while ( $role = $result->fetch_assoc() ) {
 	$roles [] = $role;
 }
 
@@ -82,19 +91,25 @@ function print_tree2($tree, $prefix, $spaces, $sid, $comimg) {
 $query = "
 select *, p.id pid, p.name pname, b.name bname, p.qty_um qty, p.um um, pri.value price, lmp.value minprice, s2.id minstore_id, c2.img minstore_img, c2.name minstore_name, pri.lastdate rdate 
 from vw_lastprices pri, store s, product p, brand b, vw_lastminprices2 lmp, store s2, commerciant c2
-where s.id=".$sid." 
+where s.id=? 
 and pri.store_id = s.id 
 and p.id=pri.product_id 
-and p.category_id=". $node ['category'] ['id'] .
-" and b.id = p.brand_id
+and p.category_id=?
+and b.id = p.brand_id
 and lmp.product_id = pri.product_id
 and lmp.store_id = s2.id
 and s2.commerciant_id = c2.id
 						";
+
 			//echo $query;
-			$result = mysql_query ( $query ) or die ( "Could not execute query ".$query );
+			$dbh=getDBH();
+$stmt = $dbh->prepare($query);
+$stmt->bind_param('ii', $sid, $node ['category'] ['id']);
+$stmt->execute();
+$result = $stmt->get_result();
+
 			$indexCat = 0;
-			while ( $row = mysql_fetch_array ( $result ) ) {
+			while ( $row = $result->fetch_assoc() ) {
 				extract ( $row );
 				?>
 		<tr
