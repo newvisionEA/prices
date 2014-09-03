@@ -28,7 +28,7 @@ CREATE TABLE `user` (
 -- --------------------------------------------------------
 CREATE TABLE `city` (
   `id` int(11) NOT NULL auto_increment,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL unique,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
@@ -39,7 +39,7 @@ values (1, 'Timisoara'), (2, 'Hunedoara'), (3, 'Cluj');
 --
 CREATE TABLE `brand` (
   `id` int(11) NOT NULL auto_increment,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL unique,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
@@ -63,7 +63,7 @@ INSERT INTO `brand` (`id`, `name`) VALUES
 CREATE TABLE `category` (
   `id` int(11) NOT NULL auto_increment,
   `parent_id` int(11) default NULL,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL unique,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
@@ -89,7 +89,7 @@ INSERT INTO `category` (`id`, `parent_id`, `name`) VALUES
 
 CREATE TABLE `commerciant` (
   `id` int(11) NOT NULL auto_increment,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL unique,
   `type` int(11) NOT NULL,
   img varchar(50) NOT NULL,
   PRIMARY KEY  (`id`)
