@@ -1,55 +1,49 @@
 <?php
-if (!isset($_SESSION['user']) || $_SESSION['user']!="rveina2@gmail.com") {
+session_start();
+
+if (!isset($_SESSION['user'])) {
 	echo "Invalid rights";
 	exit();
 }
+
 $product = $_POST['product']; 
 $price = $_POST['price'];
 $date = $_POST['date'];
 $store = $_POST['store'];
 
-require 'db.php';
+require 'dbi.php';
 
 $cdate =  date('Y-m-d H:i', strtotime($date));
 
-$query = "
-		insert into price_hist (product_id, rdate, value, store_id)
-		values(".$product.", '".$cdate."', ".$price.", ".$store.")";
+$dbh = getDBH();
+$stmt = $dbh->prepare('insert into price_hist (product_id, rdate, value, store_id)
+		values(?, ?, ?, ?)');
+$stmt->bind_param('isdi', $product, $cdate, $price, $store);
+$stmt->execute();
+$stmt->close();
 
-if (!mysql_query($query, $connection))
-{
-	die('Error: ' . mysql_error());
-}
-
-$query = "select count(*) counter from price where product_id=".$product." and store_id=".$store." and rdate < '".$cdate. "' ";
-echo $query;
-$result = mysql_query ( $query ) or die ( "Could not execute query ".$query );
-$row = mysql_fetch_array ( $result );
+$stmt = $dbh->prepare('select count(*) counter from price where product_id=? and store_id=? and rdate < ?');
+$stmt->bind_param('iis', $product, $store, $cdate);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
 extract ( $row );
-	
+$stmt->close();
+
 if ($counter == 0) {
-	$query = "
-		insert into price (product_id, rdate, value, store_id)
-		values(".$product.", '".$cdate."', ".$price.", ".$store.")";
-	
-	if (!mysql_query($query, $connection))
-	{
-		die('Error: ' . mysql_error());
-	}	
+	$stmt = $dbh->prepare('insert into price (product_id, rdate, value, store_id)
+			values(?, ?, ?, ?)');
+	$stmt->bind_param('iis', $product, $store, $cdate);
+	$stmt->execute();
 } else {
-	$query = "update price set value = ".$price.", rdate='".$cdate."' where product_id=".$product." and store_id=".$store;
-	if (!mysql_query($query, $connection))
-	{
-		die('Error: ' . mysql_error());
-	}
+	$stmt = $dbh->prepare("update price set value = ?, rdate=? where product_id=? and store_id=?");
+	$stmt->bind_param('dsii', $price, $cdate, $product, $store);
+	$stmt->execute();
 }
-echo "OK";
+//echo "OK";
 
-mysql_close($connection);
+$dbh->close();
 ?>
-
-<BR/>
-
 <?php 
 require 'contribuie.php';
 ?>
