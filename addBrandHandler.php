@@ -1,6 +1,9 @@
 <?php
 $brand = $_POST['brand']; 
-
+if (!isset($_SESSION['user']) || $_SESSION['user']!="rveina2@gmail.com") {
+	echo "Invalid rights";
+	exit();
+}
 
 require 'db.php';
 

@@ -1,4 +1,8 @@
 <?php
+if (!isset($_SESSION['user']) || $_SESSION['user']!="rveina2@gmail.com") {
+	echo "Invalid rights";
+	exit();
+}
 $product = $_POST['product']; 
 $price = $_POST['price'];
 $date = $_POST['date'];

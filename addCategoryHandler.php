@@ -1,4 +1,8 @@
 <?php
+if (!isset($_SESSION['user']) || $_SESSION['user']!="rveina2@gmail.com") {
+	echo "Invalid rights";
+	exit();
+}
 $category = $_POST['category']; 
 $name = $_POST['name'];
 
